@@ -29,10 +29,12 @@
   <div class="bg-grid-pattern"></div>
   <div class="mouse-spotlight" id="mouseSpotlight"></div>
 
-  <!-- Parallax Floating Light Orbs (Tracked on Scroll) -->
-  <div class="parallax-orb orb-1" id="orb1"></div>
-  <div class="parallax-orb orb-2" id="orb2"></div>
-  <div class="parallax-orb orb-3" id="orb3"></div>
+  <!-- Parallax Floating Light Orbs (Tracked on Scroll, Clipped to Prevent Viewport Overflow) -->
+  <div style="position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; max-width: 100%;">
+    <div class="parallax-orb orb-1" id="orb1"></div>
+    <div class="parallax-orb orb-2" id="orb2"></div>
+    <div class="parallax-orb orb-3" id="orb3"></div>
+  </div>
 
   <!-- Floating Side Scroll Tracker / Radar -->
   <div class="scroll-radar-tracker">

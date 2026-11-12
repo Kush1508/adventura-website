@@ -362,7 +362,9 @@
 
     if (!section) return;
 
-    window.addEventListener('scroll', () => {
+    let walkthroughRaf = null;
+
+    const updateWalkthrough = () => {
       const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight - window.innerHeight;
       if (sectionHeight <= 0) return;
@@ -377,8 +379,8 @@
         if (scene2) scene2.classList.add('active');
       }
 
-      // Card 1
-      if (progress >= 0.05 && progress < 0.35) {
+      // Card 1: active immediately upon entering
+      if (progress < 0.35) {
         if (card1) card1.classList.add('active');
       } else {
         if (card1) card1.classList.remove('active');
@@ -392,12 +394,22 @@
       }
 
       // Card 3
-      if (progress >= 0.65 && progress <= 1.0) {
+      if (progress >= 0.65) {
         if (card3) card3.classList.add('active');
       } else {
         if (card3) card3.classList.remove('active');
       }
-    });
+      walkthroughRaf = null;
+    };
+
+    // Run once on load to ensure scene1 and card1 are displayed immediately
+    updateWalkthrough();
+
+    window.addEventListener('scroll', () => {
+      if (!walkthroughRaf) {
+        walkthroughRaf = requestAnimationFrame(updateWalkthrough);
+      }
+    }, { passive: true });
   }
 
   /* ==========================================================================
