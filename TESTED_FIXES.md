@@ -56,6 +56,23 @@ This registry tracks verified bug fixes to ensure no future change re-introduces
 ---
 
 ### Bug 5: Excessive Dead Space Below Walkthrough
-* **Problem**: Walking through the 3 cards left a giant 150vh void of empty black scrolling before the Vision section appeared.
+* **Problem**: Walking through the 3 cards left a giant void of empty black scrolling before the Vision section appeared.
 * **Fix Applied**:
-  - Reduced `.walkthrough-section` height to `220vh` on desktop and `180vh` on mobile.
+  - Reduced `.walkthrough-section` height to `190vh` on desktop, `170vh` on tablet, and `160vh` on mobile.
+
+---
+
+### Bug 6: Walkthrough Bottom Half Black / Empty Void Rendering Issue
+* **Problem**: On mobile and desktop, the scroll-through window showed a card at the top, but the entire bottom half of the screen appeared as a black void and seemed like it wasn't rendering.
+* **Root Causes**:
+  1. The glassmorphic cards were pinned to `top: 85px` on mobile, occupying only the upper 220px of the viewport and leaving the lower 60% (~550px) completely empty.
+  2. The `.walkthrough-vignette` gradient had `rgba(8, 8, 11, 0.7)` at the bottom, which combined with the dark ground in the external Unsplash photo (`photo-1500382017468-9049fed747ef`), masking the entire bottom half into pitch black.
+  3. External Unsplash images could fail, throttle, or lag on mobile networks.
+  4. Adding `overflow-x: hidden` in earlier attempts broke `position: sticky;`, while removing it completely allowed horizontal shifting.
+* **Fix Applied**:
+  - Replaced external Unsplash URLs with local, ultra-fast, authentic project photography (`chandauti_aerial1.jpg`, `chandauti_aerial2.jpg`, `phase4_pdf2_img_2.jpg`).
+  - Added Scene 3 background element so all 3 guide steps have individual visual representations.
+  - Used `overflow-x: clip;` on `html, body`: prevents horizontal overflow and zoom-out page shifts without breaking `position: sticky;`.
+  - On desktop: Centered `.glass-walkthrough-card` vertically (`top: 50%; transform: translateY(-50%)`) for balanced framing.
+  - On mobile: Docked `.glass-walkthrough-card` elegantly at the bottom (`bottom: 24px; left: 14px; right: 14px;`), letting the aerial photography shine in the upper 65% of the screen while the frosted step details sit clearly at the bottom.
+  - Softened `.walkthrough-vignette` to `rgba(8, 8, 11, 0.5)` so full landscape details remain visible without pitch-black voids.

@@ -356,6 +356,7 @@
     const section = document.getElementById('walkthrough');
     const scene1 = document.getElementById('scene1Bg');
     const scene2 = document.getElementById('scene2Bg');
+    const scene3 = document.getElementById('scene3Bg');
     const card1 = document.getElementById('walkCard1');
     const card2 = document.getElementById('walkCard2');
     const card3 = document.getElementById('walkCard3');
@@ -371,12 +372,19 @@
 
       const progress = Math.max(0, Math.min(1, (-rect.top) / sectionHeight));
 
-      if (progress < 0.45) {
+      // Scene 1, 2, 3 switching
+      if (progress < 0.35) {
         if (scene1) scene1.classList.add('active');
         if (scene2) scene2.classList.remove('active');
-      } else {
+        if (scene3) scene3.classList.remove('active');
+      } else if (progress < 0.70) {
         if (scene1) scene1.classList.remove('active');
         if (scene2) scene2.classList.add('active');
+        if (scene3) scene3.classList.remove('active');
+      } else {
+        if (scene1) scene1.classList.remove('active');
+        if (scene2) scene2.classList.remove('active');
+        if (scene3) scene3.classList.add('active');
       }
 
       // Card 1: active immediately upon entering
@@ -387,14 +395,14 @@
       }
 
       // Card 2
-      if (progress >= 0.35 && progress < 0.65) {
+      if (progress >= 0.35 && progress < 0.70) {
         if (card2) card2.classList.add('active');
       } else {
         if (card2) card2.classList.remove('active');
       }
 
       // Card 3
-      if (progress >= 0.65) {
+      if (progress >= 0.70) {
         if (card3) card3.classList.add('active');
       } else {
         if (card3) card3.classList.remove('active');
