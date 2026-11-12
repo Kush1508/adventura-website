@@ -63,15 +63,32 @@
   });
 
   function initFastSplineMouseTracking() {
+    // Smooth 3D scene loader dismissal
+    const viewer = document.querySelector('spline-viewer');
+    if (viewer) {
+      const hideLoader = () => {
+        const loader = document.getElementById('splineLoader');
+        if (loader && loader.style.display !== 'none') {
+          loader.style.opacity = '0';
+          setTimeout(() => { if (loader) loader.style.display = 'none'; }, 400);
+        }
+      };
+      viewer.addEventListener('load', hideLoader);
+      setTimeout(hideLoader, 3000);
+    }
+
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (isTouch) return; // Touch devices use native gesture scrolling
+
     let rafId = null;
     let lastEvent = null;
 
     const updateSplineCursor = () => {
       if (!lastEvent) return;
-      const viewer = document.querySelector('spline-viewer');
-      if (viewer) {
-        const canvas = viewer.shadowRoot ? viewer.shadowRoot.querySelector('canvas') : null;
-        const targetElement = canvas || viewer;
+      const v = document.querySelector('spline-viewer');
+      if (v) {
+        const canvas = v.shadowRoot ? v.shadowRoot.querySelector('canvas') : null;
+        const targetElement = canvas || v;
         try {
           const evt = new PointerEvent('pointermove', {
             clientX: lastEvent.clientX,
@@ -396,14 +413,19 @@
     const navLinks = document.querySelectorAll('.nav-link');
     const radarDots = document.querySelectorAll('.radar-dot');
 
-    window.addEventListener('mousemove', (e) => {
-      if (spotlight) {
-        spotlight.style.setProperty('--mouse-x', `${e.clientX}px`);
-        spotlight.style.setProperty('--mouse-y', `${e.clientY}px`);
-      }
-    });
+    let scrollRaf = null;
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-    window.addEventListener('scroll', () => {
+    if (!isTouch) {
+      window.addEventListener('mousemove', (e) => {
+        if (spotlight) {
+          spotlight.style.setProperty('--mouse-x', `${e.clientX}px`);
+          spotlight.style.setProperty('--mouse-y', `${e.clientY}px`);
+        }
+      }, { passive: true });
+    }
+
+    const onScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
@@ -412,9 +434,11 @@
         progressBar.style.width = `${scrollPercent}%`;
       }
 
-      if (orb1) orb1.style.transform = `translateY(${scrollTop * 0.15}px)`;
-      if (orb2) orb2.style.transform = `translateY(${scrollTop * -0.1}px)`;
-      if (orb3) orb3.style.transform = `translateY(${scrollTop * 0.08}px)`;
+      if (!isTouch) {
+        if (orb1) orb1.style.transform = `translateY(${scrollTop * 0.15}px)`;
+        if (orb2) orb2.style.transform = `translateY(${scrollTop * -0.1}px)`;
+        if (orb3) orb3.style.transform = `translateY(${scrollTop * 0.08}px)`;
+      }
 
       let currentSection = 'home';
       sections.forEach(sec => {
@@ -438,7 +462,14 @@
           dot.classList.add('active');
         }
       });
-    });
+      scrollRaf = null;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!scrollRaf) {
+        scrollRaf = requestAnimationFrame(onScroll);
+      }
+    }, { passive: true });
   }
 
   /* ==========================================================================

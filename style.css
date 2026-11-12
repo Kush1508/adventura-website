@@ -57,6 +57,9 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Top Neon Scroll Progress Bar */
@@ -208,11 +211,13 @@ h1, h2, h3, h4, .brand-font {
 
 /* Container */
 .container {
+  width: 100%;
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 24px;
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
 }
 
 /* Buttons & Triggers */
@@ -428,7 +433,40 @@ h1, h2, h3, h4, .brand-font {
   -webkit-backface-visibility: hidden;
 }
 
-.spline-container spline-viewer,
+.spline-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: radial-gradient(circle at center, rgba(30, 20, 25, 0.4) 0%, rgba(8, 8, 11, 0.9) 70%);
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.spline-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(240, 40, 31, 0.2);
+  border-top-color: var(--red-primary);
+  border-radius: 50%;
+  animation: splineSpin 0.8s linear infinite;
+}
+
+@keyframes splineSpin {
+  to { transform: rotate(360deg); }
+}
+
+.spline-loader-text {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
 spline-viewer {
   width: 100% !important;
   height: 100% !important;
@@ -1512,6 +1550,64 @@ textarea.form-control {
 
 /* Responsive Breakpoints & Device Compatibility */
 @media (max-width: 992px) {
+  /* Performance: Disable expensive blur orbs and mouse spotlight on touch/mobile to eliminate GPU stutter */
+  .parallax-orb, .mouse-spotlight {
+    display: none !important;
+  }
+
+  /* Prevent 3D canvas from trapping touch events so mobile page scrolls silky smooth */
+  .spline-container {
+    pointer-events: none !important;
+    touch-action: pan-y !important;
+  }
+
+  /* Responsive header sizing to prevent horizontal overflow */
+  .nav-container {
+    height: 70px !important;
+    padding: 0 16px !important;
+  }
+
+  .brand-logo-link img {
+    height: 42px !important;
+    width: auto !important;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px !important;
+  }
+
+  .nav-actions .btn {
+    padding: 8px 12px !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* Responsive hero adjustments */
+  .hero-section {
+    padding-top: 110px !important;
+    padding-bottom: 70px !important;
+    min-height: auto !important;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 7.5vw, 3.2rem) !important;
+    word-break: break-word;
+  }
+
+  .hero-subtitle-tagline {
+    font-size: 1rem !important;
+    flex-wrap: wrap;
+    line-height: 1.4;
+  }
+
+  .hero-emerald-badge {
+    font-size: 0.72rem !important;
+    padding: 5px 12px !important;
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
   .calc-card, .contact-grid {
     grid-template-columns: 1fr;
   }
@@ -1551,6 +1647,41 @@ textarea.form-control {
 }
 
 @media (max-width: 600px) {
+  .nav-container {
+    height: 64px !important;
+    padding: 0 12px !important;
+  }
+
+  .brand-logo-link img {
+    height: 36px !important;
+  }
+
+  .nav-actions .btn {
+    padding: 6px 10px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .hero-title {
+    font-size: 1.85rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .hero-description {
+    font-size: 0.95rem !important;
+    margin-bottom: 24px !important;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
   }
