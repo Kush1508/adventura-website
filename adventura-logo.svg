@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 200" width="100%" height="100%">
+  <defs>
+    <!-- 3D Metallic Red Gradients -->
+    <linearGradient id="red3DGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5252" />
+      <stop offset="30%" stop-color="#E52B2B" />
+      <stop offset="70%" stop-color="#B71C1C" />
+      <stop offset="100%" stop-color="#7F0000" />
+    </linearGradient>
+
+    <linearGradient id="metallicHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF8A8A" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#D32F2F" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#5C0000" stop-opacity="1" />
+    </linearGradient>
+
+    <!-- Bevel & Shadow Filter -->
+    <filter id="glossy3DEffect" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.75" />
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#E52B2B" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- ================= 3D METALLIC EMBLEM (LEFT) ================= -->
+  <g transform="translate(15, 10)" filter="url(#glossy3DEffect)">
+    <!-- Surrounding Outer Brackets -->
+    <path d="M 75 42 C 75 20, 125 20, 125 42" stroke="url(#red3DGrad)" stroke-width="12" stroke-linecap="round" fill="none" />
+    <path d="M 68 28 C 68 12, 82 12, 82 28" stroke="url(#red3DGrad)" stroke-width="9" stroke-linecap="round" fill="none" />
+    <path d="M 118 28 C 118 12, 132 12, 132 28" stroke="url(#red3DGrad)" stroke-width="9" stroke-linecap="round" fill="none" />
+
+    <path d="M 75 158 C 75 180, 125 180, 125 158" stroke="url(#red3DGrad)" stroke-width="12" stroke-linecap="round" fill="none" />
+    <path d="M 68 172 C 68 188, 82 188, 82 172" stroke="url(#red3DGrad)" stroke-width="9" stroke-linecap="round" fill="none" />
+    <path d="M 118 172 C 118 188, 132 188, 132 172" stroke="url(#red3DGrad)" stroke-width="9" stroke-linecap="round" fill="none" />
+
+    <path d="M 42 75 C 20 75, 20 125, 42 125" stroke="url(#red3DGrad)" stroke-width="12" stroke-linecap="round" fill="none" />
+    <path d="M 28 68 C 12 68, 12 82, 28 82" stroke="url(#red3DGrad)" stroke-width="9" stroke-linecap="round" fill="none" />
+    <path d="M 28 118 C 12 118, 12 132, 28 132" stroke="url(#red3DGrad)" stroke-width="9" stroke-linecap="round" fill="none" />
+
+    <path d="M 158 75 C 180 75, 180 125, 158 125" stroke="url(#red3DGrad)" stroke-width="12" stroke-linecap="round" fill="none" />
+    <path d="M 172 68 C 186 68, 186 82, 172 82" stroke="url(#red3DGrad)" stroke-width="9" stroke-linecap="round" fill="none" />
+    <path d="M 172 118 C 186 118, 186 132, 172 132" stroke="url(#red3DGrad)" stroke-width="9" stroke-linecap="round" fill="none" />
+
+    <!-- Central Interlocking Puzzle Core -->
+    <path d="
+      M 72 58 H 128 C 128 40, 148 40, 148 58 V 72 C 166 72, 166 92, 148 92 V 108 C 166 108, 166 128, 148 128 V 142 H 128 C 128 160, 108 160, 108 142 H 92 C 92 160, 72 160, 72 142 H 58 V 128 C 40 128, 40 108, 58 108 V 92 C 40 92, 40 72, 58 72 V 58 Z
+    " stroke="url(#metallicHighlight)" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  </g>
+
+  <!-- ================= 3D METALLIC TEXT (RIGHT) ================= -->
+  <!-- 3D Layer Shadow Behind Text -->
+  <text x="228" y="128" fill="#400000" font-family="'Cinzel', 'Inter', 'Segoe UI', sans-serif" font-size="78" font-weight="900" letter-spacing="5" filter="url(#glossy3DEffect)">ADVENTURA</text>
+
+  <!-- Main 3D Glossy Red Text -->
+  <text x="225" y="125" fill="url(#metallicHighlight)" font-family="'Cinzel', 'Inter', 'Segoe UI', sans-serif" font-size="78" font-weight="900" letter-spacing="5" filter="url(#glossy3DEffect)">ADVENTURA</text>
+</svg>

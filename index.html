@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADVENTURA — Signature Residences & Real Estate Consultant in Bihar</title>
+  
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="ADVENTURA - Premier real estate consultant in Gaya, Patna, Bodhgaya and across Bihar. Trust, Transparency and Transformation. Explore upcoming plots, commercial spaces, and luxury villa townships.">
+  <meta name="keywords" content="ADVENTURA Real Estate, Gaya Plots, Bihar Land Consultant, Bodhgaya Plots, AP Colony Commercial, Dream City Gaya, Real Estate Bihar">
+
+  <!-- Google Fonts & Remix Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- Spline 3D Viewer Script Loader -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Neon Red Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+  <!-- Dynamic Interactive Mouse & Scroll Spotlight Background -->
+  <div class="bg-grid-pattern"></div>
+  <div class="mouse-spotlight" id="mouseSpotlight"></div>
+
+  <!-- Parallax Floating Light Orbs (Tracked on Scroll) -->
+  <div class="parallax-orb orb-1" id="orb1"></div>
+  <div class="parallax-orb orb-2" id="orb2"></div>
+  <div class="parallax-orb orb-3" id="orb3"></div>
+
+  <!-- Floating Side Scroll Tracker / Radar -->
+  <div class="scroll-radar-tracker">
+    <div class="radar-dot active" data-section="home" onclick="window.location.hash='home'">
+      <span class="radar-tooltip">3D Robot Hero</span>
+    </div>
+    <div class="radar-dot" data-section="walkthrough" onclick="window.location.hash='walkthrough'">
+      <span class="radar-tooltip">Walkthrough</span>
+    </div>
+    <div class="radar-dot" data-section="projects" onclick="window.location.hash='projects'">
+      <span class="radar-tooltip">Projects</span>
+    </div>
+    <div class="radar-dot" data-section="calculator" onclick="window.location.hash='calculator'">
+      <span class="radar-tooltip">EMI Calculator</span>
+    </div>
+    <div class="radar-dot" data-section="contact" onclick="window.location.hash='contact'">
+      <span class="radar-tooltip">Contact Us</span>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       HEADER NAVIGATION
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      
+      <!-- Newly Provided Glossy 3D Metallic ADVENTURA Logo Asset -->
+      <a href="#home" class="brand-logo-link">
+        <img src="adventura-logo.svg" alt="ADVENTURA — Trust, Transparency and Transformation" style="height: 52px; width: auto; filter: drop-shadow(0 0 15px rgba(240,40,31,0.5));">
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#walkthrough" class="nav-link">Walkthrough</a></li>
+          <li><a href="#vision" class="nav-link">Vision</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+          <li><a href="#founder" class="nav-link">Founder</a></li>
+          <li><a href="#calculator" class="nav-link">EMI Calc</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
+          Inquire Now
+        </a>
+
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <i class="ri-menu-4-line"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       COMPONENT 1: INTERACTIVE 3D ROBOT HERO SECTION (Hero3D.tsx)
+       ========================================================================== -->
+  <section class="hero-section" id="home">
+    
+    <!-- Spline 3D Interactive Robot Scene Layer -->
+    <div class="spline-container" style="transform: translateZ(0); will-change: transform; -webkit-backface-visibility: hidden;">
+      <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading-anim style="width: 100%; height: 100%; display: block;"></spline-viewer>
+    </div>
+
+    <!-- Spline Watermark Blocker & Bottom Gradient Mask -->
+    <div style="position: absolute; bottom: 0; right: 0; z-index: 30; width: 260px; height: 95px; background: linear-gradient(to top left, #08080b, rgba(8,8,11,0.95), transparent); pointer-events: none;"></div>
+
+    <!-- Hero Content Overlay UI -->
+    <div class="container relative z-20">
+      <div class="hero-content">
+        
+        <!-- Top Badge with Pulsing Emerald Indicator -->
+        <div class="hero-emerald-badge">
+          <span class="emerald-pulse-dot"></span>
+          <span>ADVENTURA Signature Residences</span>
+          <span class="badge-status">Booking Open</span>
+        </div>
+
+        <!-- Headline with Gradient Text -->
+        <h1 class="hero-title">
+          Curated Spaces. <span class="text-gradient">Elevated Living.</span>
+        </h1>
+
+        <div class="hero-subtitle-tagline">
+          <span>Trust, Transparency and Transformation</span>
+        </div>
+
+        <p class="hero-description">
+          <strong>ADVENTURA</strong> is your premier trusted real estate consultant operating across Gaya, Patna, Bodhgaya, AP Colony, Karmauni, and major growth corridors in Bihar. Offering 100% legal title clarity, commercial hubs, and luxury plotting estates.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#contact" class="btn btn-primary">
+            <i class="ri-sparkling-fill"></i> Schedule Private Tour
+          </a>
+          <a href="tel:+916299130640" class="btn btn-secondary">
+            <i class="ri-phone-fill" style="color: var(--red-light);"></i> Direct Call: +91 6299130640
+          </a>
+        </div>
+
+        <!-- Bottom Property Highlights Bar -->
+        <div class="hero-highlights-bar">
+          <div class="highlight-item">
+            <div class="highlight-icon"><i class="ri-building-line"></i></div>
+            <div>
+              <span>Investment Range</span>
+              <strong>₹8.5 Lakhs - ₹1.45 Cr*</strong>
+            </div>
+          </div>
+
+          <div class="highlight-item">
+            <div class="highlight-icon"><i class="ri-map-pin-line"></i></div>
+            <div>
+              <span>Typology</span>
+              <strong>3 & 4 BHK Estates / Plots</strong>
+            </div>
+          </div>
+
+          <div class="highlight-item">
+            <div class="highlight-icon"><i class="ri-calendar-event-line"></i></div>
+            <div>
+              <span>Possession Status</span>
+              <strong>Immediate / 2026</strong>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: flex-end;">
+            <a href="#projects" class="btn btn-primary" style="width: 100%; height: 48px; justify-content: center;">
+              Explore Corridors <i class="ri-arrow-right-line"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       COMPONENT 2: SCROLLYTELLING WALKTHROUGH SECTION (ScrollWalkthrough.tsx)
+       ========================================================================== -->
+  <section class="walkthrough-section" id="walkthrough">
+    <div class="walkthrough-sticky-wrapper">
+      
+      <!-- Background Scene Images -->
+      <div class="walkthrough-bg-scene scene-1 active" id="scene1Bg">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1920&q=80" alt="Plotted Townships Scene">
+      </div>
+      <div class="walkthrough-bg-scene scene-2" id="scene2Bg">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80" alt="Luxury Amenities Scene">
+      </div>
+      <div class="walkthrough-vignette"></div>
+
+      <!-- Floating Glassmorphic Specification Cards Layer -->
+      <div class="walkthrough-cards-layer">
+        
+        <!-- Card Stage 1 -->
+        <div class="glass-walkthrough-card active" id="walkCard1">
+          <div class="card-stage-badge red-badge">
+            <i class="ri-shield-check-line"></i> 3-Step Guide • Step 01
+          </div>
+          <h3>1. 100% Legally Verified Projects</h3>
+          <p>Every project and property you explore through Adventura has already undergone rigorous legal verification by our expert legal team, ensuring absolute peace of mind.</p>
+          <div class="card-footer-tags">
+            <span><i class="ri-shield-check-fill" style="color: #10B981;"></i> Expert Legal Team Audit</span>
+            <span><i class="ri-checkbox-circle-fill" style="color: #10B981;"></i> Absolute Peace of Mind</span>
+          </div>
+        </div>
+
+        <!-- Card Stage 2 -->
+        <div class="glass-walkthrough-card" id="walkCard2">
+          <div class="card-stage-badge green-badge">
+            <i class="ri-compass-3-line"></i> 3-Step Guide • Step 02
+          </div>
+          <h3>2. End-to-End Guided Site Visits</h3>
+          <p>As you browse our properties or investment plans, you can easily schedule a visit. Our dedicated team takes care of everything from sharing in-depth project details to guiding you through a personalized site visit of our land and properties.</p>
+          <div class="card-footer-tags">
+            <span><i class="ri-map-pin-fill" style="color: var(--red-light);"></i> Personalized Site Visit</span>
+            <span><i class="ri-award-fill" style="color: #10B981;"></i> Transport Included</span>
+          </div>
+        </div>
+
+        <!-- Card Stage 3 -->
+        <div class="glass-walkthrough-card" id="walkCard3">
+          <div class="card-stage-badge red-badge">
+            <i class="ri-customer-service-2-line"></i> 3-Step Guide • Step 03
+          </div>
+          <h3>3. Transparent Payments & Dedicated Support</h3>
+          <p>Experience a crystal-clear payment structure where you can easily track all your transactions. Plus, you are assigned a dedicated staff member whom you can contact at any time for any queries.</p>
+          <a href="#contact" class="btn btn-primary" style="margin-top: 14px; width: 100%; justify-content: center;">
+            Schedule Your Guided Site Visit Now
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Scroll Guide Indicator -->
+      <div class="scroll-guide-box">
+        <span>Scroll To Explore Walkthrough</span>
+        <div class="bounce-arrow"><i class="ri-arrow-down-s-line"></i></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       OUR VISION SECTION (Trust, Transparency, Transformation)
+       ========================================================================== -->
+  <section class="section-padding" id="vision" style="background: var(--bg-dark); border-top: 1px solid var(--border-line);">
+    <div class="container">
+      <div style="text-align: center; max-width: 750px; margin: 0 auto 50px auto;">
+        <span style="font-size: 0.75rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 2px; color: var(--red-light); font-weight: 600; display: block; margin-bottom: 10px;">Our Core Mission & Philosophy</span>
+        <h2 style="font-size: 2.4rem; color: #fff; margin-bottom: 16px;">Transforming Bihar's Real Estate Landscape</h2>
+        <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">ADVENTURA was founded with a singular conviction: to establish unprecedented standards of <strong style="color: #fff;">Trust, Transparency, and Transformation</strong> across every land transaction and layout development in Bihar.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 50px;">
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 30px;">
+          <div style="width: 50px; height: 50px; background: rgba(240,40,31,0.1); border: 1px solid rgba(240,40,31,0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--red-light); font-size: 1.5rem; margin-bottom: 20px;">
+            <i class="ri-shield-check-line"></i>
+          </div>
+          <h3 style="font-size: 1.4rem; color: #fff; margin-bottom: 12px;">Unwavering Trust</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">We eliminate the risks in real estate investments through 100% verified legal title documentation, government survey line audit, and guaranteed immediate registry with clear mutation support.</p>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 30px;">
+          <div style="width: 50px; height: 50px; background: rgba(240,40,31,0.1); border: 1px solid rgba(240,40,31,0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--red-light); font-size: 1.5rem; margin-bottom: 20px;">
+            <i class="ri-eye-line"></i>
+          </div>
+          <h3 style="font-size: 1.4rem; color: #fff; margin-bottom: 12px;">Complete Transparency</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">Zero hidden costs, fixed layout pricing, and clear physical site demarcation. Buyers get complete access to layout maps, road width specs, and municipal utility plans before booking.</p>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 30px;">
+          <div style="width: 50px; height: 50px; background: rgba(240,40,31,0.1); border: 1px solid rgba(240,40,31,0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--red-light); font-size: 1.5rem; margin-bottom: 20px;">
+            <i class="ri-line-chart-line"></i>
+          </div>
+          <h3 style="font-size: 1.4rem; color: #fff; margin-bottom: 12px;">Urban Transformation</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">We transform strategic rural and semi-urban corridors into modern master-planned townships equipped with wide blacktop roads, solar streetlights, parks, and high capital growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FEATURED UPCOMING PROJECTS SHOWCASE
+       ========================================================================== -->
+  <section class="section-padding" id="projects">
+    <div class="container">
+      
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2>Featured Upcoming Projects</h2>
+          <p>Explore high-value residential plots, commercial developments, and luxury layouts</p>
+        </div>
+
+        <div class="project-filters">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="ongoing">🚧 Current Ongoing Projects</button>
+          <button class="filter-btn" data-filter="upcoming">🚀 Upcoming Projects</button>
+          <button class="filter-btn" data-filter="completed">✅ Completed Projects</button>
+          <button class="filter-btn" data-filter="residential">Residential Plots</button>
+          <button class="filter-btn" data-filter="commercial">Commercial Spaces</button>
+          <button class="filter-btn" data-filter="villa">Villa Townships</button>
+        </div>
+      </div>
+
+      <!-- Dynamic Projects Grid -->
+      <div class="projects-grid" id="projectsContainer">
+        <!-- Rendered via app.js -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CLIENT TESTIMONIALS & REVIEWS SECTION
+       ========================================================================== -->
+  <section class="section-padding" id="testimonials" style="background: var(--bg-dark); border-top: 1px solid var(--border-line);">
+    <div class="container">
+      
+      <div style="display: flex; flex-direction: column; md:flex-row; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 40px;">
+        <div style="max-width: 700px;">
+          <span style="font-size: 0.75rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 2px; color: var(--red-light); font-weight: 600; display: block; margin-bottom: 10px;">Client Testimonials & Feedback</span>
+          <h2 style="font-size: 2.4rem; color: #fff; margin-bottom: 12px;">Trusted by Hundreds of Buyers Across Bihar</h2>
+          <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">Read authentic experiences from families, doctors, NRI investors, and local business owners who secured their investments with ADVENTURA.</p>
+        </div>
+        <button class="btn btn-primary" onclick="window.AdventuraApp.openClientReviewModal()" style="white-space: nowrap; height: 48px;">
+          <i class="ri-add-line"></i> Share Your Client Review
+        </button>
+      </div>
+
+      <!-- Dynamic Testimonials Grid Container -->
+      <div id="testimonialsContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+        <!-- Rendered via app.js -->
+      </div>
+
+    </div>
+  </section>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PROPERTY EMI & BUDGET CALCULATOR
+       ========================================================================== -->
+  <section class="section-padding" id="calculator">
+    <div class="container">
+      
+      <div class="section-header" style="justify-content: center; text-align: center;">
+        <div class="section-title-wrap" style="max-width: 600px;">
+          <h2>Property EMI & Land Financial Calculator</h2>
+          <p>Estimate your monthly installment and total investment budget with ease</p>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        
+        <div class="calc-inputs">
+          <div class="range-group">
+            <div class="range-header">
+              <label>Plot / Property Value</label>
+              <span id="displayAmountVal">₹15 Lakhs</span>
+            </div>
+            <input type="range" id="calcAmount" min="5" max="100" value="15" step="1">
+          </div>
+
+          <div class="range-group">
+            <div class="range-header">
+              <label>Loan Tenure</label>
+              <span id="displayTenureVal">10 Years</span>
+            </div>
+            <input type="range" id="calcTenure" min="1" max="25" value="10" step="1">
+          </div>
+
+          <div class="range-group">
+            <div class="range-header">
+              <label>Estimated Interest Rate (p.a.)</label>
+              <span id="displayRateVal">8.5%</span>
+            </div>
+            <input type="range" id="calcRate" min="5" max="15" value="8.5" step="0.25">
+          </div>
+        </div>
+
+        <div class="calc-results">
+          <div class="emi-display-box">
+            <span>Estimated Monthly EMI</span>
+            <div class="emi-amount" id="calculatedEMI">₹18,602</div>
+          </div>
+
+          <div class="calc-breakdown">
+            <div class="breakdown-row">
+              <span>Principal Amount:</span>
+              <strong id="totalPrincipal">₹15,00,000</strong>
+            </div>
+            <div class="breakdown-row">
+              <span>Total Interest Payable:</span>
+              <strong id="totalInterest" style="color: var(--red-light);">₹7,32,240</strong>
+            </div>
+            <div class="breakdown-row">
+              <span>Total Amount Payable:</span>
+              <strong id="totalPayable">₹22,32,240</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOUNDER LEADERSHIP PROFILE SECTION
+       ========================================================================== -->
+  <section class="section-padding" id="founder" style="background: var(--bg-dark); border-top: 1px solid var(--border-line);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: center;">
+        <div>
+          <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-line); background: rgba(8,8,11,0.96); padding: 14px; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+            <!-- Photo Container - Clean & Unobstructed -->
+            <div style="height: 420px; width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-line); margin-bottom: 14px; background: #040406;">
+              <img src="founder.jpg" alt="Ankit Kumar — ADVENTURA Founder & Principal Consultant" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+            </div>
+            
+            <!-- Dedicated Credential Card Below Photo -->
+            <div style="background: rgba(18,18,26,0.95); padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-line);">
+              <span style="color: var(--red-light); font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; display: block; margin-bottom: 4px;"><i class="ri-sparkling-fill"></i> Founder & Principal Consultant</span>
+              <h3 style="font-size: 1.35rem; color: #fff; margin: 0 0 4px 0;">Ankit Kumar</h3>
+              <p style="font-size: 0.84rem; color: var(--text-muted); margin: 0 0 10px 0; line-height: 1.5;">Leading ADVENTURA across Gaya, Bodhgaya, AP Colony & Bihar.</p>
+              <div style="border-top: 1px solid var(--border-line); padding-top: 8px; display: flex; justify-content: space-between; font-size: 0.75rem; font-family: var(--font-mono); color: #10B981;">
+                <span><i class="ri-shield-check-fill"></i> Verified Leadership</span>
+                <span style="color: var(--text-dim);">Gaya, Bihar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span style="font-size: 0.75rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 2px; color: var(--red-light); font-weight: 600; display: block; margin-bottom: 10px;">Leadership & Commitment</span>
+          <h2 style="font-size: 2.2rem; color: #fff; margin-bottom: 20px; line-height: 1.2;">"Every Land Buyer Deserves Complete Security & High ROI"</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">As the founder of <strong style="color: #fff;">ADVENTURA</strong>, my vision has always been grounded in a simple promise: to eliminate ambiguity and build lasting wealth for families and investors buying property across Bihar.</p>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px;">Real estate in high-growth corridors shouldn't be stressful. We ensure every plot parcel comes backed by 100% verified legal title deeds, government survey line accuracy, transparent pricing, and immediate mutation support.</p>
+
+          <div style="background: rgba(240,40,31,0.08); border-left: 4px solid var(--red-primary); padding: 16px 20px; border-radius: 8px; margin-bottom: 24px;">
+            <em style="color: #fff; font-size: 1rem;">"Our core motto 'Trust, Transparency and Transformation' (Advertise your AdVenture) is our founding pledge. We don't just sell plots; we partner with you to turn your property aspirations into secured real estate assets."</em>
+          </div>
+
+          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+            <a href="tel:+916299130640" class="btn btn-primary">
+              <i class="ri-phone-fill"></i> Speak with Founder (+91 6299130640)
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              Book Personal Consultation
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       GLOBAL CONTACT & LEAD CAPTURE SECTION
+       ========================================================================== -->
+  <section class="section-padding" id="contact" style="background: rgba(255,255,255,0.01); border-top: 1px solid var(--border-line);">
+    <div class="container">
+      
+      <div class="contact-grid">
+        
+        <div class="contact-info-card">
+          <div>
+            <span class="hero-emerald-badge" style="margin-bottom: 12px; display: inline-flex;">
+              <span class="emerald-pulse-dot"></span>
+              <span>Get In Touch</span>
+            </span>
+            <h2 style="font-size: 2.2rem; margin-top: 10px; margin-bottom: 16px;">
+              Ready to Invest in Your Future Landmark?
+            </h2>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+              Connect with Adventura's senior real estate consultants for immediate plot availability, layout maps, and site visit scheduling.
+            </p>
+
+            <div class="contact-methods">
+              <div class="contact-method-item">
+                <div class="contact-icon-box"><i class="ri-phone-fill"></i></div>
+                <div class="contact-details">
+                  <h5>Direct Call</h5>
+                  <a href="tel:+916299130640">+91 6299130640</a> / 
+                  <a href="tel:+919065150820">+91 9065150820</a>
+                </div>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="contact-icon-box"><i class="ri-mail-open-fill"></i></div>
+                <div class="contact-details">
+                  <h5>Official Email</h5>
+                  <a href="mailto:advntrawork@gmail.com">advntrawork@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="contact-icon-box"><i class="ri-map-pin-2-fill"></i></div>
+                <div class="contact-details">
+                  <h5>Headquarters</h5>
+                  <p>Gaya & Regional Branches across Bihar, India</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h5 style="color: var(--text-dim); text-transform: uppercase; font-size: 0.8rem; margin-top: 30px;">Follow Adventura Media</h5>
+            <div class="social-links-wrap">
+              <a href="https://www.instagram.com/ankitrealty__/" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+                <i class="ri-instagram-line"></i>
+              </a>
+              <a href="https://www.youtube.com/@Ankit_Realty" target="_blank" rel="noopener" class="social-btn" title="YouTube Channel">
+                <i class="ri-youtube-line"></i>
+              </a>
+              <a href="https://wa.me/916299130640" target="_blank" rel="noopener" class="social-btn" title="WhatsApp Chat">
+                <i class="ri-whatsapp-line"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Lead Form -->
+        <div class="lead-form-card">
+          <h3 style="font-size: 1.6rem; margin-bottom: 8px;">Book Consultation / Site Visit</h3>
+          <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 24px;">Fill out the form below for instant call back & project details.</p>
+
+          <form id="inquiryForm">
+            <div class="form-group">
+              <label for="inquiryName">Full Name *</label>
+              <input type="text" id="inquiryName" class="form-control" placeholder="Enter your full name" required>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+              <div class="form-group">
+                <label for="inquiryPhone">Phone Number *</label>
+                <input type="tel" id="inquiryPhone" class="form-control" placeholder="+91 Mobile number" required>
+              </div>
+              <div class="form-group">
+                <label for="inquiryEmail">Email Address</label>
+                <input type="email" id="inquiryEmail" class="form-control" placeholder="name@domain.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inquiryInterest">Interested In *</label>
+              <select id="inquiryInterest" class="form-control" required>
+                <option value="Residential Plots">Residential Plots (Karmauni / Khizersarai / Gaya)</option>
+                <option value="Commercial Spaces">Commercial Spaces (AP Colony / CRPF Belt)</option>
+                <option value="Luxury Villa Plots">Luxury Villa Plots (Bodhgaya Corridor)</option>
+                <option value="General Land Consultation">General Real Estate Consultancy</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="inquiryMessage">Your Requirement / Message</label>
+              <textarea id="inquiryMessage" class="form-control" placeholder="Tell us your budget, plot size preference, or expected possession timeframe..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; height: 50px; font-size: 1rem;">
+              <i class="ri-send-plane-fill"></i> Submit Inquiry & Get Callback
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <a href="#home" class="brand-logo-link">
+            <img src="adventura-logo.svg" alt="ADVENTURA — Trust, Transparency and Transformation" style="height: 52px; width: auto; filter: drop-shadow(0 0 15px rgba(240,40,31,0.5));">
+          </a>
+          <p>
+            Operating as Bihar's premier real estate consultant. Transformative plotting developments, commercial hubs, and luxury layouts with 100% legal title guarantee.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home">3D Robot Hero</a></li>
+            <li><a href="#walkthrough">Walkthrough</a></li>
+            <li><a href="#projects">Upcoming Projects</a></li>
+            <li><a href="#calculator">EMI Calculator</a></li>
+            <li><a href="#contact">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Key Corridors</h4>
+          <ul class="footer-links">
+            <li><a href="#projects">Dream City Phase 4</a></li>
+            <li><a href="#projects">Dream City Phase 5</a></li>
+            <li><a href="#projects">Bhawa Tower AP Colony</a></li>
+            <li><a href="#projects">Chandauti Plotting</a></li>
+            <li><a href="#projects">Bodhgaya Residency</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Official Contact</h4>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
+            <i class="ri-phone-fill" style="color: var(--red-light);"></i> +91 6299130640 / +91 9065150820
+          </p>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px;">
+            <i class="ri-mail-fill" style="color: var(--red-light);"></i> advntrawork@gmail.com
+          </p>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">
+            <i class="ri-map-pin-fill" style="color: var(--red-light);"></i> Gaya & Regional Bihar Offices
+          </p>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 ADVENTURA Real Estate Consultant. All Rights Reserved. Tagline: <em>Trust, Transparency and Transformation.</em>
+        </div>
+        <div>
+          <span>Next.js App Router Architecture • Spline 3D Robot • Framer Motion</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       STICKY FLOATING QUICK-ACTION BAR (CALL & WHATSAPP)
+       ========================================================================== -->
+  <div class="floating-action-bar">
+    <a href="tel:+916299130640" class="floating-btn call-btn">
+      <i class="ri-phone-fill"></i>
+      <span>Call Us: +91 6299130640</span>
+    </a>
+    <a href="https://wa.me/916299130640?text=Hi%20Adventura%2C%20I%20am%20interested%20in%20your%20real%20estate%20projects" target="_blank" rel="noopener" class="floating-btn whatsapp-btn">
+      <i class="ri-whatsapp-fill"></i>
+      <span>WhatsApp Chat</span>
+    </a>
+  </div>
+
+  <!-- ==========================================================================
+       PROJECT DETAIL MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="projectDetailModal">
+    <div class="modal-container">
+      <button class="modal-close-btn" onclick="window.AdventuraApp.closeModal('projectDetailModal')">
+        <i class="ri-close-line"></i>
+      </button>
+      <div id="projectModalBody">
+        <!-- Loaded via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       CLIENT WRITE-A-REVIEW MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="clientReviewModal">
+    <div class="modal-container" style="max-width: 600px;">
+      <button class="modal-close-btn" onclick="window.AdventuraApp.closeModal('clientReviewModal')">
+        <i class="ri-close-line"></i>
+      </button>
+      <div style="padding: 30px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+          <div style="width: 44px; height: 44px; background: rgba(240,40,31,0.12); border: 1px solid rgba(240,40,31,0.3); border-radius: 12px; color: var(--red-light); font-size: 1.3rem; display: flex; align-items: center; justify-content: center;">
+            <i class="ri-message-3-line"></i>
+          </div>
+          <div>
+            <h3 style="font-size: 1.3rem; color: #fff; margin: 0;">Share Your Client Review</h3>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin: 2px 0 0 0;">Your feedback helps fellow buyers across Bihar make informed decisions.</p>
+          </div>
+        </div>
+
+        <form onsubmit="window.AdventuraApp.handleClientReviewSubmit(event)" style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="form-group">
+            <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Your Full Name *</label>
+            <input type="text" id="reviewName" class="form-control" placeholder="e.g. Rajesh Kumar" required style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 10px 14px; border-radius: 8px;">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="form-group">
+              <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Profession / Role</label>
+              <input type="text" id="reviewRole" class="form-control" placeholder="e.g. Doctor / Businessman" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 10px 14px; border-radius: 8px;">
+            </div>
+            <div class="form-group">
+              <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">City / Location</label>
+              <input type="text" id="reviewLocation" class="form-control" placeholder="e.g. Patna / Gaya" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 10px 14px; border-radius: 8px;">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="form-group">
+              <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Project Purchased / Visited *</label>
+              <select id="reviewProject" class="form-control" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 10px 14px; border-radius: 8px;">
+                <option value="Dream City Phase 4">Dream City Phase 4</option>
+                <option value="Dream City Phase 5">Dream City Phase 5</option>
+                <option value="Bhawa Tower AP Colony">Bhawa Tower AP Colony</option>
+                <option value="Chandauti Plotting Corridor">Chandauti Plotting</option>
+                <option value="Bodhgaya International Residency">Bodhgaya Residency</option>
+                <option value="Dream City Phase 1 & 2">Dream City Phase 1 & 2</option>
+                <option value="AP Colony Residency Phase 1">AP Colony Residency</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Rating Score</label>
+              <select id="reviewRating" class="form-control" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 10px 14px; border-radius: 8px;">
+                <option value="5">⭐⭐⭐⭐⭐ (5.0 Excellent)</option>
+                <option value="4">⭐⭐⭐⭐ (4.0 Very Good)</option>
+                <option value="3">⭐⭐⭐ (3.0 Good)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Select Indian Profile Photo</label>
+            <select id="reviewAvatar" class="form-control" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 10px 14px; border-radius: 8px;">
+              <option value="https://images.unsplash.com/photo-1566753323558-f4e0952af115?auto=format&fit=crop&w=300&q=80">Indian Senior Executive / Businessman Photo</option>
+              <option value="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80">Indian Female Doctor / Professional Photo</option>
+              <option value="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80">Indian Male Tech / NRI Investor Photo</option>
+              <option value="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80">Indian Family / Business Professional Photo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Your Review & Experience *</label>
+            <textarea id="reviewQuote" class="form-control" rows="4" required placeholder="Share your experience regarding legal verification, site visit, staff response, or plot registry..." style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 10px 14px; border-radius: 8px; resize: none;"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="height: 48px; width: 100%; margin-top: 6px;">
+            <i class="ri-send-plane-fill"></i> Publish Client Review Live
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SELF-UPDATE CMS & LEAD MANAGEMENT MODAL (PASSWORD PROTECTED)
+       ========================================================================== -->
+  <div class="modal-overlay" id="adminCMSModal">
+    <div class="modal-container" style="max-width: 1050px;">
+      <button class="modal-close-btn" onclick="window.AdventuraApp.closeModal('adminCMSModal')">
+        <i class="ri-close-line"></i>
+      </button>
+      <div style="padding: 30px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h2><i class="ri-shield-star-line" style="color: var(--red-light);"></i> ADVENTURA CMS & Lead CRM</h2>
+          <span style="font-size: 0.82rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: var(--radius-full);">Admin Authorized Mode</span>
+        </div>
+
+        <div class="admin-tabs">
+          <button class="admin-tab-btn active" data-tab="projects-cms">Project Manager (CMS)</button>
+          <button class="admin-tab-btn" data-tab="leads-crm">Leads CRM & CSV Export</button>
+        </div>
+
+        <div id="adminCMSBody">
+          <!-- Rendered dynamically in app.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="projects-data.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
