@@ -44,6 +44,11 @@
       }
     }
   }
+  <script>
+    (function(){
+      const t = localStorage.getItem('adventura_theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
   </script>
 </head>
 <body>
@@ -73,6 +78,12 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Theme Toggle Button (Codemure Radial Theme Transition) -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark and Light Theme" title="Toggle Theme">
+          <i class="ri-moon-line moon-icon"></i>
+          <i class="ri-sun-line sun-icon"></i>
+        </button>
+
         <a href="tel:+916299130640" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
           <i class="ri-phone-fill"></i> Call Now
         </a>
@@ -101,43 +112,43 @@
         <!-- Contact Channels Info -->
         <div>
           <span style="font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--red-light); letter-spacing: 1.5px; font-weight: 600;">Reach Us Directly</span>
-          <h2 style="font-size: 2.2rem; color: #fff; margin: 8px 0 20px 0;">We Are At Your Service</h2>
+          <h2 style="font-size: 2.2rem; color: var(--text-main); margin: 8px 0 20px 0;">We Are At Your Service</h2>
           <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 30px;">
             Whether you want to inspect revenue survey papers, request plot availability for Dream City Phase 4, or schedule on-site transport, our advisory team responds within hours.
           </p>
 
           <div style="display: flex; flex-direction: column; gap: 20px;">
             <!-- Phone -->
-            <div style="display: flex; gap: 16px; align-items: flex-start; background: rgba(255,255,255,0.03); border: 1px solid var(--border-line); border-radius: var(--radius-md); padding: 20px;">
+            <div style="display: flex; gap: 16px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-md); padding: 20px;">
               <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(240,40,31,0.1); border: 1px solid rgba(240,40,31,0.3); display: flex; align-items: center; justify-content: center; color: var(--red-light); font-size: 1.4rem; flex-shrink: 0;">
                 <i class="ri-phone-fill"></i>
               </div>
               <div>
-                <strong style="color: #fff; font-size: 1.05rem; display: block; margin-bottom: 4px;">Direct Phone Consultation</strong>
+                <strong style="color: var(--text-main); font-size: 1.05rem; display: block; margin-bottom: 4px;">Direct Phone Consultation</strong>
                 <a href="tel:+916299130640" style="color: var(--red-light); font-size: 1.15rem; font-family: var(--font-mono); font-weight: 600;">+91 6299130640</a>
                 <span style="display: block; font-size: 0.78rem; color: var(--text-dim); margin-top: 4px;">Available Monday to Sunday (9:00 AM - 8:00 PM IST)</span>
               </div>
             </div>
 
             <!-- WhatsApp -->
-            <div style="display: flex; gap: 16px; align-items: flex-start; background: rgba(255,255,255,0.03); border: 1px solid var(--border-line); border-radius: var(--radius-md); padding: 20px;">
+            <div style="display: flex; gap: 16px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-md); padding: 20px;">
               <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); display: flex; align-items: center; justify-content: center; color: var(--emerald-accent); font-size: 1.4rem; flex-shrink: 0;">
                 <i class="ri-whatsapp-fill"></i>
               </div>
               <div>
-                <strong style="color: #fff; font-size: 1.05rem; display: block; margin-bottom: 4px;">Instant WhatsApp Support</strong>
+                <strong style="color: var(--text-main); font-size: 1.05rem; display: block; margin-bottom: 4px;">Instant WhatsApp Support</strong>
                 <a href="https://wa.me/916299130640?text=Hi%20Adventura%20Team%2C%20I%20would%20like%20to%20schedule%20a%20site%20visit." target="_blank" style="color: var(--emerald-accent); font-size: 0.92rem; font-weight: 600;">Chat with Property Advisor Now &rarr;</a>
                 <span style="display: block; font-size: 0.78rem; color: var(--text-dim); margin-top: 4px;">Get instant plot blueprints, PDFs, and video walkthroughs</span>
               </div>
             </div>
 
             <!-- Regional Offices -->
-            <div style="display: flex; gap: 16px; align-items: flex-start; background: rgba(255,255,255,0.03); border: 1px solid var(--border-line); border-radius: var(--radius-md); padding: 20px;">
+            <div style="display: flex; gap: 16px; align-items: flex-start; background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-md); padding: 20px;">
               <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(240,40,31,0.1); border: 1px solid rgba(240,40,31,0.3); display: flex; align-items: center; justify-content: center; color: var(--red-light); font-size: 1.4rem; flex-shrink: 0;">
                 <i class="ri-map-pin-2-fill"></i>
               </div>
               <div>
-                <strong style="color: #fff; font-size: 1.05rem; display: block; margin-bottom: 4px;">Primary Consultation Offices</strong>
+                <strong style="color: var(--text-main); font-size: 1.05rem; display: block; margin-bottom: 4px;">Primary Consultation Offices</strong>
                 <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin: 0;">
                   • AP Colony, Gaya, Bihar<br>
                   • Karmouni Highway Corridor, Gaya<br>
@@ -149,8 +160,8 @@
         </div>
 
         <!-- Booking Form Container -->
-        <div style="background: rgba(18, 18, 26, 0.95); border: 1px solid var(--border-line); border-radius: var(--radius-xl); padding: 36px; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
-          <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 6px;">Book Guided Site Visit</h3>
+        <div style="background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-xl); padding: 36px; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+          <h3 style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 6px;">Book Guided Site Visit</h3>
           <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 24px;">Includes complimentary pickup and end-to-end plot layout walkthrough.</p>
 
           <form id="inquiryForm" class="inquiry-form">
@@ -166,7 +177,7 @@
 
             <div class="form-group">
               <label>Preferred Project / Corridor</label>
-              <select id="leadProject" class="form-control" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 12px 16px; border-radius: 8px;">
+              <select id="leadProject" class="form-control" style="width: 100%; background: var(--bg-card); border: 1px solid var(--border-line); color: var(--text-main); padding: 12px 16px; border-radius: 8px;">
                 <option value="Dream City Phase 4">Dream City Phase 4 (Karmouni, Gaya)</option>
                 <option value="Dream City Phase 5">Dream City Phase 5 (Highway corridor)</option>
                 <option value="Bhawa Tower AP Colony">Bhawa Tower (AP Colony Commercial)</option>
@@ -190,28 +201,28 @@
       </div>
 
       <!-- FAQ Section -->
-      <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-line); border-radius: var(--radius-xl); padding: 40px;">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-xl); padding: 40px;">
         <span style="font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--red-light); letter-spacing: 1.5px; font-weight: 600;">Frequently Asked Questions</span>
-        <h3 style="font-size: 1.8rem; color: #fff; margin: 8px 0 24px 0;">Answers To Common Buyer Inquiries</h3>
+        <h3 style="font-size: 1.8rem; color: var(--text-main); margin: 8px 0 24px 0;">Answers To Common Buyer Inquiries</h3>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
           <div>
-            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-question-line" style="color: var(--red-light);"></i> Is registry immediate upon full payment?</h4>
+            <h4 style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-question-line" style="color: var(--red-light);"></i> Is registry immediate upon full payment?</h4>
             <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">Yes. Dream City Phase 4 is fully documented under Official Registration No: 00340. Once your payment terms are completed, immediate registry with Dakhil-Kharij assistance is executed.</p>
           </div>
 
           <div>
-            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-question-line" style="color: var(--red-light);"></i> What road widths are provided in the townships?</h4>
+            <h4 style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-question-line" style="color: var(--red-light);"></i> What road widths are provided in the townships?</h4>
             <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">Our townships feature 30 ft. wide main boulevards, 20 ft. secondary roads, and 16 ft. internal paved lanes to ensure smooth vehicle movement and emergency access.</p>
           </div>
 
           <div>
-            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-question-line" style="color: var(--red-light);"></i> How does the ₹16,501/month EMI work?</h4>
+            <h4 style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-question-line" style="color: var(--red-light);"></i> How does the ₹16,501/month EMI work?</h4>
             <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">Adventura provides direct in-house flexi-installments for qualifying plots without complicated bank mortgage paperwork, allowing investors to secure plots with predictable monthly outflows.</p>
           </div>
 
           <div>
-            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-question-line" style="color: var(--red-light);"></i> Can outstation / NRI buyers book remotely?</h4>
+            <h4 style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-question-line" style="color: var(--red-light);"></i> Can outstation / NRI buyers book remotely?</h4>
             <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">Yes. We provide high-resolution drone videos, survey coordinate maps, and digital video walkthroughs for buyers living in Patna, Delhi, or abroad, followed by registered power-of-attorney support.</p>
           </div>
         </div>

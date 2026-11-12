@@ -39,6 +39,11 @@
       "url": "https://adventura-taupe.vercel.app"
     }
   }
+  <script>
+    (function(){
+      const t = localStorage.getItem('adventura_theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
   </script>
 </head>
 <body>
@@ -68,6 +73,12 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Theme Toggle Button (Codemure Radial Theme Transition) -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark and Light Theme" title="Toggle Theme">
+          <i class="ri-moon-line moon-icon"></i>
+          <i class="ri-sun-line sun-icon"></i>
+        </button>
+
         <a href="contact.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
           Inquire Now
         </a>
@@ -95,7 +106,7 @@
         
         <!-- Controls Column -->
         <div class="calc-inputs">
-          <h2 style="font-size: 1.6rem; color: #fff; margin-bottom: 24px;">
+          <h2 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 24px;">
             <i class="ri-calculator-line" style="color: var(--red-light);"></i> Loan Parameters
           </h2>
 
@@ -145,7 +156,7 @@
           <div style="background: rgba(240,40,31,0.06); border: 1px solid rgba(240,40,31,0.25); border-radius: var(--radius-md); padding: 18px; margin-top: 10px;">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
               <i class="ri-checkbox-circle-fill" style="color: var(--emerald-accent);"></i>
-              <strong style="color: #fff; font-size: 0.88rem;">Adventura In-House Flexi-Installment</strong>
+              <strong style="color: var(--text-main); font-size: 0.88rem;">Adventura In-House Flexi-Installment</strong>
             </div>
             <p style="color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; margin: 0;">
               Dream City Phase 4 offers direct developer installments starting at just <strong>₹16,501 per month</strong> with zero bank loan processing friction.
@@ -164,14 +175,14 @@
           <div class="calc-summary-list">
             <div class="calc-summary-item">
               <span style="color: var(--text-muted);">Principal Amount:</span>
-              <strong style="color: #fff;" id="summaryPrincipal">₹15,00,000</strong>
+              <strong style="color: var(--text-main);" id="summaryPrincipal">₹15,00,000</strong>
             </div>
             <div class="calc-summary-item">
               <span style="color: var(--text-muted);">Total Interest Payable:</span>
               <strong style="color: var(--red-light);" id="calcTotalInterest">₹7,31,760</strong>
             </div>
             <div class="calc-summary-item" style="border-top: 1px solid var(--border-line); padding-top: 12px; margin-top: 8px;">
-              <span style="color: #fff; font-weight: 600;">Total Amount Payable:</span>
+              <span style="color: var(--text-main); font-weight: 600;">Total Amount Payable:</span>
               <strong style="color: var(--emerald-accent); font-size: 1.15rem;" id="calcTotalPayment">₹22,31,760</strong>
             </div>
           </div>
@@ -184,25 +195,25 @@
       </div>
 
       <!-- Land Registry & Investment Guide -->
-      <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-line); border-radius: var(--radius-xl); padding: 36px;">
-        <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 14px;">Bihar Land Acquisition & Registry Guidance</h3>
+      <div style="background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-xl); padding: 36px;">
+        <h3 style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 14px;">Bihar Land Acquisition & Registry Guidance</h3>
         <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 24px;">
           When acquiring property in Bihar, the total acquisition cost involves the basic plot value plus government stamp duty and registration fees. Adventura provides end-to-end guidance to ensure you encounter zero unexpected charges.
         </p>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
-          <div style="padding: 20px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-line); border-radius: var(--radius-md);">
-            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-file-shield-line" style="color: var(--red-light);"></i> Title & Mutation Clarity</h4>
+          <div style="padding: 20px; background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-md);">
+            <h4 style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-file-shield-line" style="color: var(--red-light);"></i> Title & Mutation Clarity</h4>
             <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin: 0;">We audit CS/RS Khatiyan, Jamabandi records, and ensure guaranteed Dakhil-Kharij (Mutation) execution.</p>
           </div>
 
-          <div style="padding: 20px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-line); border-radius: var(--radius-md);">
-            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-road-map-line" style="color: var(--red-light);"></i> Demarcation Before Payment</h4>
+          <div style="padding: 20px; background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-md);">
+            <h4 style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-road-map-line" style="color: var(--red-light);"></i> Demarcation Before Payment</h4>
             <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin: 0;">Physical boundary corner-pillars are set on site so you know the exact layout coordinates of your 1,020 sq.ft plot.</p>
           </div>
 
-          <div style="padding: 20px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-line); border-radius: var(--radius-md);">
-            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-bank-card-line" style="color: var(--red-light);"></i> Stamp Duty Consultation</h4>
+          <div style="padding: 20px; background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-md);">
+            <h4 style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-bank-card-line" style="color: var(--red-light);"></i> Stamp Duty Consultation</h4>
             <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin: 0;">Complete breakdown of Bihar government circle rates and registration charges with official receipts.</p>
           </div>
         </div>

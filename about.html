@@ -41,6 +41,11 @@
     },
     "description": "Premier real estate consultant in Gaya, Patna, and Bodhgaya offering 100% legal title verification and plotted infrastructure."
   }
+  <script>
+    (function(){
+      const t = localStorage.getItem('adventura_theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
   </script>
 </head>
 <body>
@@ -70,6 +75,12 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Theme Toggle Button (Codemure Radial Theme Transition) -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark and Light Theme" title="Toggle Theme">
+          <i class="ri-moon-line moon-icon"></i>
+          <i class="ri-sun-line sun-icon"></i>
+        </button>
+
         <a href="contact.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
           Inquire Now
         </a>
@@ -95,38 +106,38 @@
     <div class="container">
       <div style="text-align: center; max-width: 750px; margin: 0 auto 50px auto;">
         <span style="font-size: 0.75rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 2px; color: var(--red-light); font-weight: 600; display: block; margin-bottom: 10px;">Our Guiding Philosophy</span>
-        <h2 style="font-size: 2.2rem; color: #fff; margin-bottom: 16px;">The Three Commitments of ADVENTURA</h2>
+        <h2 style="font-size: 2.2rem; color: var(--text-main); margin-bottom: 16px;">The Three Commitments of ADVENTURA</h2>
         <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.7;">
           Every plot, agreement, and site development undertaken by Adventura adheres strictly to an uncompromised standard of integrity.
         </p>
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px;">
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 32px;">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 32px;">
           <div style="width: 52px; height: 52px; background: rgba(240,40,31,0.1); border: 1px solid rgba(240,40,31,0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--red-light); font-size: 1.5rem; margin-bottom: 20px;">
             <i class="ri-shield-check-line"></i>
           </div>
-          <h3 style="font-size: 1.4rem; color: #fff; margin-bottom: 12px;">1. Unwavering Trust</h3>
+          <h3 style="font-size: 1.4rem; color: var(--text-main); margin-bottom: 12px;">1. Unwavering Trust</h3>
           <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.7;">
             We eliminate buyer anxiety by conducting rigorous title searches, revenue chain verification (Jamabandi/Mutation audit), and government survey demarcations before booking opens.
           </p>
         </div>
 
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 32px;">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 32px;">
           <div style="width: 52px; height: 52px; background: rgba(240,40,31,0.1); border: 1px solid rgba(240,40,31,0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--red-light); font-size: 1.5rem; margin-bottom: 20px;">
             <i class="ri-eye-line"></i>
           </div>
-          <h3 style="font-size: 1.4rem; color: #fff; margin-bottom: 12px;">2. Complete Transparency</h3>
+          <h3 style="font-size: 1.4rem; color: var(--text-main); margin-bottom: 12px;">2. Complete Transparency</h3>
           <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.7;">
             No hidden brokerage fees, no ambiguous road widths, and no undisclosed municipal encumbrances. Every customer receives layout maps, plot dimension charts, and registration timelines upfront.
           </p>
         </div>
 
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 32px;">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 32px;">
           <div style="width: 52px; height: 52px; background: rgba(240,40,31,0.1); border: 1px solid rgba(240,40,31,0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--red-light); font-size: 1.5rem; margin-bottom: 20px;">
             <i class="ri-line-chart-line"></i>
           </div>
-          <h3 style="font-size: 1.4rem; color: #fff; margin-bottom: 12px;">3. Transformation</h3>
+          <h3 style="font-size: 1.4rem; color: var(--text-main); margin-bottom: 12px;">3. Transformation</h3>
           <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.7;">
             We do not sell raw barren soil. We develop systematic townships with 30 ft. wide main roads, electricity pole networks, drainage systems, and green park allocations for thriving communities.
           </p>
@@ -134,17 +145,17 @@
       </div>
 
       <!-- Founder Section -->
-      <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-line); border-radius: var(--radius-xl); padding: 40px; margin-bottom: 50px;">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-xl); padding: 40px; margin-bottom: 50px;">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; align-items: center;">
           <div style="text-align: center;">
             <img src="founder.jpg" alt="Naval Kishore Kushwaha - Founder & Chairman ADVENTURA" style="width: 100%; max-width: 320px; border-radius: var(--radius-lg); border: 2px solid var(--border-line); box-shadow: 0 15px 40px rgba(0,0,0,0.8); object-fit: cover;">
-            <h3 style="font-size: 1.4rem; color: #fff; margin-top: 18px; margin-bottom: 4px;">Naval Kishore Kushwaha</h3>
+            <h3 style="font-size: 1.4rem; color: var(--text-main); margin-top: 18px; margin-bottom: 4px;">Naval Kishore Kushwaha</h3>
             <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--red-light);">Founder & Chairman</span>
           </div>
 
           <div>
             <span style="font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--red-light); letter-spacing: 1.5px; font-weight: 600;">Leadership Message</span>
-            <h2 style="font-size: 2rem; color: #fff; margin: 10px 0 20px 0; line-height: 1.25;">"Building Trust Is The Most Valuable Asset In Real Estate"</h2>
+            <h2 style="font-size: 2rem; color: var(--text-main); margin: 10px 0 20px 0; line-height: 1.25;">"Building Trust Is The Most Valuable Asset In Real Estate"</h2>
             <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 16px;">
               For decades, prospective plot buyers in Bihar have struggled with fragmented documentation, disputed family boundaries, and unfulfilled development promises. At <strong>ADVENTURA</strong>, our mission is to eliminate these obstacles once and for all.
             </p>
@@ -164,7 +175,7 @@
         <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; flex-wrap: wrap; gap: 16px;">
           <div>
             <span style="font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--emerald-accent); letter-spacing: 1.5px; font-weight: 600;">Client Feedback</span>
-            <h2 style="font-size: 2rem; color: #fff; margin-top: 6px;">Verified Land Buyer Experiences</h2>
+            <h2 style="font-size: 2rem; color: var(--text-main); margin-top: 6px;">Verified Land Buyer Experiences</h2>
           </div>
           <button class="btn btn-secondary" onclick="window.AdventuraApp.openModal('clientReviewModal')">
             <i class="ri-chat-new-line"></i> Write A Review
@@ -186,17 +197,19 @@
         <i class="ri-close-line"></i>
       </button>
       <div style="padding: 30px;">
-        <h3 style="font-size: 1.3rem; color: #fff; margin-bottom: 6px;">Submit Verified Client Review</h3>
+        <h3 style="font-size: 1.3rem; color: var(--text-main); margin-bottom: 6px;">Submit Verified Client Review</h3>
         <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">Share your experience regarding legal audit, site visit, or plot registry.</p>
         <form onsubmit="window.AdventuraApp.handleClientReviewSubmit(event)" style="display: flex; flex-direction: column; gap: 14px;">
-          <input type="text" id="reviewName" class="form-control" placeholder="Your Name *" required style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 10px 14px; border-radius: 8px;">
-          <input type="text" id="reviewRole" class="form-control" placeholder="Profession / City" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 10px 14px; border-radius: 8px;">
-          <select id="reviewProject" class="form-control" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 10px 14px; border-radius: 8px;">
+          <input type="text" id="reviewName" class="form-control" placeholder="Your Name *" required style="width: 100%; background: var(--bg-card); border: 1px solid var(--border-line); color: var(--text-main); padding: 10px 14px; border-radius: 8px;">
+          <input type="text" id="reviewRole" class="form-control" placeholder="Profession / City" style="width: 100%; background: var(--bg-card); border: 1px solid var(--border-line); color: var(--text-main); padding: 10px 14px; border-radius: 8px;">
+          <select id="reviewProject" class="form-control" style="width: 100%; background: var(--bg-card); border: 1px solid var(--border-line); color: var(--text-main); padding: 10px 14px; border-radius: 8px;">
             <option value="Dream City Phase 4">Dream City Phase 4</option>
             <option value="Dream City Phase 5">Dream City Phase 5</option>
             <option value="Bhawa Tower AP Colony">Bhawa Tower AP Colony</option>
           </select>
-          <textarea id="reviewQuote" class="form-control" rows="4" required placeholder="Your Review *" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 10px 14px; border-radius: 8px; resize: none;"></textarea>
+          <textarea id="reviewQuote" class="form-control" rows="4" required placeholder="Your Review *" style="width: 100%; background: var(--bg-card); border: 1px solid var(--border-line); color: var(--text-main); padding: 10px 14px; border-radius: 8px; resize: none;"></textarea>
+          <button type="submit" class="btn btn-primary" style="height: 48px; width: 100%;">Publish Review</button>
+        </form>
           <button type="submit" class="btn btn-primary" style="height: 48px; width: 100%;">Publish Review</button>
         </form>
       </div>

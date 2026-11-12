@@ -56,11 +56,73 @@
       initScrollEffects();
       initWalkthroughScroll();
       initFastSplineMouseTracking();
+      initThemeToggle();
       checkSecretAdminRoute();
     } catch (err) {
       console.error('[Adventura Engine Initialization Error]', err);
     }
   });
+
+  /* ==========================================================================
+     RADIAL THEME SWITCH CONTROLLER (Codemure Style Circular Ripple)
+     ========================================================================== */
+  function initThemeToggle() {
+    const toggleBtn = document.getElementById('themeToggleBtn');
+    
+    // Apply saved theme immediately
+    const savedTheme = localStorage.getItem('adventura_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    if (!toggleBtn) return;
+
+    toggleBtn.addEventListener('click', (event) => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      // Check if View Transitions API is supported
+      if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const rect = toggleBtn.getBoundingClientRect();
+        const x = event.clientX || (rect.left + rect.width / 2);
+        const y = event.clientY || (rect.top + rect.height / 2);
+
+        // Calculate distance to the furthest corner of the viewport
+        const endRadius = Math.hypot(
+          Math.max(x, window.innerWidth - x),
+          Math.max(y, window.innerHeight - y)
+        );
+
+        const transition = document.startViewTransition(() => {
+          document.documentElement.setAttribute('data-theme', nextTheme);
+          localStorage.setItem('adventura_theme', nextTheme);
+        });
+
+        transition.ready.then(() => {
+          // Native CSS @keyframes inkBleedSequence handles the steps(24) mask-position animation,
+          // and we provide Web Animations API invocation to guarantee frame-perfect synchronization
+          try {
+            document.documentElement.animate(
+              {
+                maskPosition: ['0% 0%', '100% 0%'],
+                WebkitMaskPosition: ['0% 0%', '100% 0%']
+              },
+              {
+                duration: 850,
+                easing: 'steps(24)',
+                pseudoElement: '::view-transition-new(root)',
+                fill: 'forwards'
+              }
+            );
+          } catch (e) {
+            // CSS @keyframes fallback will run automatically
+          }
+        });
+      } else {
+        // Fallback for older browsers
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('adventura_theme', nextTheme);
+      }
+    });
+  }
 
   function initFastSplineMouseTracking() {
     // Smooth 3D scene loader dismissal

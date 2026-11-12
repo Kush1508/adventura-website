@@ -42,6 +42,11 @@
       "addressCountry": "IN"
     }
   }
+  <script>
+    (function(){
+      const t = localStorage.getItem('adventura_theme');
+      if (t) document.documentElement.setAttribute('data-theme', t);
+    })();
   </script>
 </head>
 <body>
@@ -71,6 +76,12 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Theme Toggle Button (Codemure Radial Theme Transition) -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Dark and Light Theme" title="Toggle Theme">
+          <i class="ri-moon-line moon-icon"></i>
+          <i class="ri-sun-line sun-icon"></i>
+        </button>
+
         <a href="contact.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
           Inquire Now
         </a>
@@ -96,11 +107,11 @@
     <div class="container">
 
       <!-- Search & Category Filters -->
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 40px;">
+      <div style="background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 40px;">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px;">
           <div>
             <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 8px;">Filter By Location</label>
-            <select id="searchLocation" class="form-control" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 12px 16px; border-radius: 8px;">
+            <select id="searchLocation" class="form-control" style="width: 100%; background: var(--bg-card); border: 1px solid var(--border-line); color: var(--text-main); padding: 12px 16px; border-radius: 8px;">
               <option value="">All Locations Across Bihar</option>
               <option value="karmouni">Karmouni, Gaya</option>
               <option value="gaya">Gaya Highway Corridor</option>
@@ -112,7 +123,7 @@
 
           <div>
             <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 8px;">Property Typology</label>
-            <select id="searchType" class="form-control" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 12px 16px; border-radius: 8px;">
+            <select id="searchType" class="form-control" style="width: 100%; background: var(--bg-card); border: 1px solid var(--border-line); color: var(--text-main); padding: 12px 16px; border-radius: 8px;">
               <option value="all">All Property Types</option>
               <option value="residential">Residential Plots & Estates</option>
               <option value="commercial">Commercial Hubs & Roadfront</option>
