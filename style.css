@@ -416,6 +416,7 @@ h1, h2, h3, h4, .brand-font {
   min-height: 95vh;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .spline-container {
@@ -540,7 +541,9 @@ spline-viewer::part(canvas) {
 }
 
 .hero-content {
+  width: 100%;
   max-width: 860px;
+  margin: 0 auto;
 }
 
 .hero-title {
@@ -643,7 +646,7 @@ spline-viewer::part(canvas) {
    ========================================================================== */
 .walkthrough-section {
   position: relative;
-  height: 350vh;
+  height: 220vh;
   background: var(--bg-dark);
 }
 
@@ -1545,6 +1548,55 @@ textarea.form-control {
   gap: 14px;
 }
 
+/* ==========================================================================
+   MULTI-PAGE INNER PAGE HERO & BREADCRUMBS
+   ========================================================================== */
+.page-hero {
+  position: relative;
+  padding: 140px 0 60px 0;
+  background: radial-gradient(circle at 50% 0%, rgba(240, 40, 31, 0.12) 0%, rgba(8, 8, 11, 0.98) 70%);
+  border-bottom: 1px solid var(--border-line);
+  text-align: center;
+}
+
+.page-hero-title {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.page-hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 680px;
+  margin: 0 auto 20px auto;
+  line-height: 1.6;
+}
+
+.breadcrumbs-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-line);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--text-dim);
+}
+
+.breadcrumbs-nav a {
+  color: var(--red-light);
+  transition: color 0.2s ease;
+}
+
+.breadcrumbs-nav a:hover {
+  color: #FFFFFF;
+}
+
 /* Responsive Breakpoints & Device Compatibility */
 @media (max-width: 992px) {
   /* Performance: Disable expensive blur orbs and mouse spotlight on touch/mobile to eliminate GPU stutter */
@@ -1623,6 +1675,10 @@ textarea.form-control {
   
   .scroll-radar-tracker {
     display: none;
+  }
+
+  .walkthrough-section {
+    height: 180vh !important;
   }
 
   .glass-walkthrough-card {

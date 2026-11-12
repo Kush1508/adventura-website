@@ -43,3 +43,19 @@ This registry tracks verified bug fixes to ensure no future change re-introduces
   - Removed `overflow-x: hidden` from `html` and `body`.
   - Throttled `initWalkthroughScroll` with `requestAnimationFrame`.
   - Ensured Card 1 and Scene 1 display immediately upon entering the section (`progress < 0.35`).
+
+---
+
+### Bug 4: Pinch-Zoom Out Viewport Shift (Left-Alignment & Black Gutter)
+* **Problem**: When a user pinched out on mobile, the entire page shriveled to the left while the fixed header stayed full width, creating an awkward black gap on the right.
+* **Root Cause**: Viewport was unconstrained allowing unlimited scaling, and `.hero-content` had `max-width: 860px` with no auto-centering.
+* **Fix Applied**:
+  - Locked viewport scale in all HTML files: `<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">`.
+  - Added `justify-content: center;` to `.hero-section` and `margin: 0 auto; width: 100%;` to `.hero-content`.
+
+---
+
+### Bug 5: Excessive Dead Space Below Walkthrough
+* **Problem**: Walking through the 3 cards left a giant 150vh void of empty black scrolling before the Vision section appeared.
+* **Fix Applied**:
+  - Reduced `.walkthrough-section` height to `220vh` on desktop and `180vh` on mobile.

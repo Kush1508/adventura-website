@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Real Estate Projects & Plots in Gaya & Bihar | ADVENTURA</title>
+  
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="Explore verified residential and commercial plotting projects in Gaya, Bodhgaya, AP Colony, and Bihar. Dream City Phase 4, Phase 5, Naval Bhawan with 100% legal title clarity and easy EMIs.">
+  <meta name="keywords" content="ADVENTURA Projects, Gaya Plots, Dream City Phase 4, Dream City Phase 5, Naval Bhawan, Bodhgaya Plots, Residential Land Bihar">
+  <link rel="canonical" href="https://adventura-taupe.vercel.app/projects.html">
+
+  <!-- Open Graph & Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Verified Real Estate Plots in Gaya & Bihar | ADVENTURA">
+  <meta property="og:description" content="Explore verified residential and commercial plotting projects in Gaya, Bodhgaya, AP Colony, and Bihar. 100% title clarity and registry support.">
+  <meta property="og:url" content="https://adventura-taupe.vercel.app/projects.html">
+  <meta property="og:image" content="https://adventura-taupe.vercel.app/phase4_pdf2_img_2.jpg">
+
+  <!-- Google Fonts & Remix Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- RealEstateAgent Schema JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "ADVENTURA Real Estate",
+    "url": "https://adventura-taupe.vercel.app/projects.html",
+    "logo": "https://adventura-taupe.vercel.app/adventura-logo.svg",
+    "telephone": "+916299130640",
+    "priceRange": "₹6,80,000 - ₹1,45,00,000",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Gaya",
+      "addressRegion": "Bihar",
+      "addressCountry": "IN"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Neon Red Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+  <!-- Background Grid -->
+  <div class="bg-grid-pattern"></div>
+  <div class="mouse-spotlight" id="mouseSpotlight"></div>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo-link">
+        <img src="adventura-logo.svg" alt="ADVENTURA — Trust, Transparency and Transformation" style="height: 52px; width: auto; filter: drop-shadow(0 0 15px rgba(240,40,31,0.5));">
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="projects.html" class="nav-link active">Projects</a></li>
+          <li><a href="about.html" class="nav-link">About & Vision</a></li>
+          <li><a href="calculator.html" class="nav-link">EMI Calc</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
+          Inquire Now
+        </a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <i class="ri-menu-4-line"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero Header -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumbs-nav">
+        <a href="index.html"><i class="ri-home-4-line"></i> Home</a>
+        <span>/</span>
+        <span>Projects Catalog</span>
+      </div>
+      <h1 class="page-hero-title">Exclusive Real Estate Townships & Plots</h1>
+      <p class="page-hero-subtitle">
+        Carefully planned residential layouts, commercial zones, and luxury villa estates across Gaya and high-growth Bihar corridors. 100% legal title clarity guaranteed.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects Section with Live Filters -->
+  <section class="section-padding" style="background: var(--bg-dark);">
+    <div class="container">
+
+      <!-- Search & Category Filters -->
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-line); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 40px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px;">
+          <div>
+            <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 8px;">Filter By Location</label>
+            <select id="searchLocation" class="form-control" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 12px 16px; border-radius: 8px;">
+              <option value="">All Locations Across Bihar</option>
+              <option value="karmouni">Karmouni, Gaya</option>
+              <option value="gaya">Gaya Highway Corridor</option>
+              <option value="ap colony">AP Colony, Gaya</option>
+              <option value="chandauti">Chandauti, Gaya</option>
+              <option value="bodhgaya">Bodhgaya Region</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 8px;">Property Typology</label>
+            <select id="searchType" class="form-control" style="width: 100%; background: #08080b; border: 1px solid var(--border-line); color: #fff; padding: 12px 16px; border-radius: 8px;">
+              <option value="all">All Property Types</option>
+              <option value="residential">Residential Plots & Estates</option>
+              <option value="commercial">Commercial Hubs & Roadfront</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Filter Pill Buttons -->
+        <div class="projects-filter-bar" style="margin-bottom: 0;">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="ongoing">Ongoing / Booking Open</button>
+          <button class="filter-btn" data-filter="upcoming">Upcoming Launches</button>
+          <button class="filter-btn" data-filter="residential">Residential Plots</button>
+          <button class="filter-btn" data-filter="commercial">Commercial Hubs</button>
+        </div>
+      </div>
+
+      <!-- Dynamic Projects Container Grid -->
+      <div class="projects-grid" id="projectsContainer">
+        <!-- Rendered dynamically by app.js from projects-data.js -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Project Details Modal (Populated Dynamically) -->
+  <div class="modal-overlay" id="projectDetailModal">
+    <div class="modal-container" style="max-width: 900px;">
+      <button class="modal-close-btn" onclick="window.AdventuraApp.closeModal('projectDetailModal')">
+        <i class="ri-close-line"></i>
+      </button>
+      <div id="projectDetailBody" style="padding: 30px;">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Mobile Action Bar -->
+  <div class="floating-action-bar">
+    <a href="tel:+916299130640" class="floating-btn call-btn">
+      <i class="ri-phone-fill"></i>
+      <span>Call: +91 6299130640</span>
+    </a>
+    <a href="https://wa.me/916299130640?text=Hi%20Adventura%20Team%2C%20I%20am%20interested%20in%20your%20plotting%20projects." target="_blank" class="floating-btn whatsapp-btn">
+      <i class="ri-whatsapp-fill"></i>
+      <span>WhatsApp Chat</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="adventura-logo.svg" alt="ADVENTURA Logo" style="height: 48px; width: auto; margin-bottom: 16px;">
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px;">
+            ADVENTURA is Bihar's premier real estate consultancy. Delivering unprecedented Trust, Transparency, and Transformation in residential and commercial plotting.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">All Projects</a></li>
+            <li><a href="about.html">About & Vision</a></li>
+            <li><a href="calculator.html">EMI Calculator</a></li>
+            <li><a href="contact.html">Book Site Visit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Major Corridors</h4>
+          <ul class="footer-links">
+            <li><a href="projects.html">Dream City Phase 4 (Karmouni)</a></li>
+            <li><a href="projects.html">Dream City Phase 5 (Highway)</a></li>
+            <li><a href="projects.html">Bhawa Tower (AP Colony)</a></li>
+            <li><a href="projects.html">Chandauti Aerial Plots</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Direct Contact</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 10px;">
+            <i class="ri-map-pin-line" style="color: var(--red-light);"></i> AP Colony & Karmouni Highway, Gaya, Bihar
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 10px;">
+            <i class="ri-phone-line" style="color: var(--red-light);"></i> +91 6299130640
+          </p>
+          <a href="contact.html" class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: 10px;">
+            Schedule Private Tour
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 ADVENTURA Real Estate Consultant. All Rights Reserved.</div>
+        <div style="font-family: var(--font-mono); font-size: 0.8rem;">Trust • Transparency • Transformation</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="projects-data.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

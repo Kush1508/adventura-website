@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Real Estate EMI & Property Investment Calculator | ADVENTURA Gaya Bihar</title>
+  
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="Calculate your monthly plot and property loan EMIs, interest breakdown, and payment schedules for real estate investments in Gaya, Patna, and Bihar with ADVENTURA's EMI calculator.">
+  <meta name="keywords" content="Property EMI Calculator Bihar, Plot Loan Gaya, Real Estate Finance Bihar, Plot Installment Plan Gaya, Land EMI Calculator">
+  <link rel="canonical" href="https://adventura-taupe.vercel.app/calculator.html">
+
+  <!-- Open Graph & Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Real Estate EMI & Property Loan Calculator | ADVENTURA">
+  <meta property="og:description" content="Calculate your monthly plot loan installments, interest breakdown, and payment schedules with ADVENTURA.">
+  <meta property="og:url" content="https://adventura-taupe.vercel.app/calculator.html">
+  <meta property="og:image" content="https://adventura-taupe.vercel.app/chandauti_aerial1.jpg">
+
+  <!-- Google Fonts & Remix Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- FinancialProduct Schema JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialProduct",
+    "name": "ADVENTURA Flexi-EMI Plot Installment Scheme",
+    "description": "Flexible monthly plot installment plans starting from ₹16,501/month with title-verified registry support.",
+    "provider": {
+      "@type": "RealEstateAgent",
+      "name": "ADVENTURA Real Estate",
+      "telephone": "+916299130640",
+      "url": "https://adventura-taupe.vercel.app"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Neon Red Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+  <!-- Background Grid -->
+  <div class="bg-grid-pattern"></div>
+  <div class="mouse-spotlight" id="mouseSpotlight"></div>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo-link">
+        <img src="adventura-logo.svg" alt="ADVENTURA — Trust, Transparency and Transformation" style="height: 52px; width: auto; filter: drop-shadow(0 0 15px rgba(240,40,31,0.5));">
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="projects.html" class="nav-link">Projects</a></li>
+          <li><a href="about.html" class="nav-link">About & Vision</a></li>
+          <li><a href="calculator.html" class="nav-link active">EMI Calc</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
+          Inquire Now
+        </a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <i class="ri-menu-4-line"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Hero Header -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumbs-nav">
+        <a href="index.html"><i class="ri-home-4-line"></i> Home</a>
+        <span>/</span>
+        <span>EMI Calculator</span>
+      </div>
+      <h1 class="page-hero-title">Property Investment & EMI Calculator</h1>
+      <p class="page-hero-subtitle">
+        Plan your residential plot or commercial property investment with 100% financial clarity. Compute monthly installments, total interest, and amortization instantly.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator Tool Section -->
+  <section class="section-padding" style="background: var(--bg-dark);">
+    <div class="container">
+      <div class="calc-card" style="margin-bottom: 50px;">
+        
+        <!-- Controls Column -->
+        <div class="calc-inputs">
+          <h2 style="font-size: 1.6rem; color: #fff; margin-bottom: 24px;">
+            <i class="ri-calculator-line" style="color: var(--red-light);"></i> Loan Parameters
+          </h2>
+
+          <!-- Loan Amount -->
+          <div class="calc-group">
+            <div class="calc-label-row">
+              <label>Property Loan Principal</label>
+              <span class="calc-val-display" id="amountVal">₹15 Lakhs</span>
+            </div>
+            <input type="range" id="calcAmount" min="3" max="100" step="1" value="15" class="calc-range">
+            <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-dim); margin-top: 6px;">
+              <span>₹3 Lakhs</span>
+              <span>₹50 Lakhs</span>
+              <span>₹1 Crore</span>
+            </div>
+          </div>
+
+          <!-- Loan Tenure -->
+          <div class="calc-group">
+            <div class="calc-label-row">
+              <label>Repayment Tenure</label>
+              <span class="calc-val-display" id="tenureVal">10 Years</span>
+            </div>
+            <input type="range" id="calcTenure" min="1" max="30" step="1" value="10" class="calc-range">
+            <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-dim); margin-top: 6px;">
+              <span>1 Year</span>
+              <span>15 Years</span>
+              <span>30 Years</span>
+            </div>
+          </div>
+
+          <!-- Interest Rate -->
+          <div class="calc-group">
+            <div class="calc-label-row">
+              <label>Annual Interest Rate</label>
+              <span class="calc-val-display" id="rateVal">8.5%</span>
+            </div>
+            <input type="range" id="calcRate" min="6" max="16" step="0.1" value="8.5" class="calc-range">
+            <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-dim); margin-top: 6px;">
+              <span>6% (Govt / Subsidized)</span>
+              <span>10% (Commercial)</span>
+              <span>16% (NBFC)</span>
+            </div>
+          </div>
+
+          <!-- Highlight Box for Adventura Flexi-EMI -->
+          <div style="background: rgba(240,40,31,0.06); border: 1px solid rgba(240,40,31,0.25); border-radius: var(--radius-md); padding: 18px; margin-top: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+              <i class="ri-checkbox-circle-fill" style="color: var(--emerald-accent);"></i>
+              <strong style="color: #fff; font-size: 0.88rem;">Adventura In-House Flexi-Installment</strong>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; margin: 0;">
+              Dream City Phase 4 offers direct developer installments starting at just <strong>₹16,501 per month</strong> with zero bank loan processing friction.
+            </p>
+          </div>
+        </div>
+
+        <!-- Results Display Column -->
+        <div class="calc-results">
+          <div style="text-align: center; margin-bottom: 28px;">
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1.5px;">Estimated Monthly Outflow</span>
+            <div class="emi-display" id="calcEMI" style="font-size: 2.8rem; color: var(--red-light); margin: 8px 0; font-family: var(--font-heading); font-weight: 800;">₹18,598</div>
+            <span style="font-size: 0.78rem; color: var(--text-dim);">Principal + Interest Equated Monthly Installment</span>
+          </div>
+
+          <div class="calc-summary-list">
+            <div class="calc-summary-item">
+              <span style="color: var(--text-muted);">Principal Amount:</span>
+              <strong style="color: #fff;" id="summaryPrincipal">₹15,00,000</strong>
+            </div>
+            <div class="calc-summary-item">
+              <span style="color: var(--text-muted);">Total Interest Payable:</span>
+              <strong style="color: var(--red-light);" id="calcTotalInterest">₹7,31,760</strong>
+            </div>
+            <div class="calc-summary-item" style="border-top: 1px solid var(--border-line); padding-top: 12px; margin-top: 8px;">
+              <span style="color: #fff; font-weight: 600;">Total Amount Payable:</span>
+              <strong style="color: var(--emerald-accent); font-size: 1.15rem;" id="calcTotalPayment">₹22,31,760</strong>
+            </div>
+          </div>
+
+          <a href="contact.html" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 24px; height: 50px;">
+            <i class="ri-file-list-3-line"></i> Apply For Flexi-Payment Plan
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Land Registry & Investment Guide -->
+      <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-line); border-radius: var(--radius-xl); padding: 36px;">
+        <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 14px;">Bihar Land Acquisition & Registry Guidance</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 24px;">
+          When acquiring property in Bihar, the total acquisition cost involves the basic plot value plus government stamp duty and registration fees. Adventura provides end-to-end guidance to ensure you encounter zero unexpected charges.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+          <div style="padding: 20px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-line); border-radius: var(--radius-md);">
+            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-file-shield-line" style="color: var(--red-light);"></i> Title & Mutation Clarity</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin: 0;">We audit CS/RS Khatiyan, Jamabandi records, and ensure guaranteed Dakhil-Kharij (Mutation) execution.</p>
+          </div>
+
+          <div style="padding: 20px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-line); border-radius: var(--radius-md);">
+            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-road-map-line" style="color: var(--red-light);"></i> Demarcation Before Payment</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin: 0;">Physical boundary corner-pillars are set on site so you know the exact layout coordinates of your 1,020 sq.ft plot.</p>
+          </div>
+
+          <div style="padding: 20px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-line); border-radius: var(--radius-md);">
+            <h4 style="color: #fff; font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-bank-card-line" style="color: var(--red-light);"></i> Stamp Duty Consultation</h4>
+            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin: 0;">Complete breakdown of Bihar government circle rates and registration charges with official receipts.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Floating Mobile Action Bar -->
+  <div class="floating-action-bar">
+    <a href="tel:+916299130640" class="floating-btn call-btn">
+      <i class="ri-phone-fill"></i>
+      <span>Call: +91 6299130640</span>
+    </a>
+    <a href="https://wa.me/916299130640?text=Hi%20Adventura%20Team%2C%20I%20used%20your%20EMI%20calculator%20and%20want%20to%20know%20more." target="_blank" class="floating-btn whatsapp-btn">
+      <i class="ri-whatsapp-fill"></i>
+      <span>WhatsApp Chat</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img src="adventura-logo.svg" alt="ADVENTURA Logo" style="height: 48px; width: auto; margin-bottom: 16px;">
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+            ADVENTURA is Bihar's premier real estate consultancy. Delivering unprecedented Trust, Transparency, and Transformation.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">All Projects</a></li>
+            <li><a href="about.html">About & Vision</a></li>
+            <li><a href="calculator.html">EMI Calculator</a></li>
+            <li><a href="contact.html">Book Site Visit</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Major Corridors</h4>
+          <ul class="footer-links">
+            <li><a href="projects.html">Dream City Phase 4</a></li>
+            <li><a href="projects.html">Dream City Phase 5</a></li>
+            <li><a href="projects.html">Bhawa Tower AP Colony</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Direct Contact</h4>
+          <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 10px;">
+            <i class="ri-phone-line" style="color: var(--red-light);"></i> +91 6299130640
+          </p>
+          <a href="contact.html" class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: 10px;">
+            Inquire For Custom EMI
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 ADVENTURA Real Estate Consultant. All Rights Reserved.</div>
+        <div style="font-family: var(--font-mono); font-size: 0.8rem;">Trust • Transparency • Transformation</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="projects-data.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
