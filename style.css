@@ -331,49 +331,64 @@ h1, h2, h3, h4, .brand-font {
   opacity: 0.9;
 }
 
-/* Nav links */
+/* Nav links - Capsule Pill Design */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-line);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 .nav-links li {
+  display: flex;
+  align-items: center;
   white-space: nowrap !important;
 }
 
+.nav-links li:not(:last-child)::after {
+  content: '/';
+  color: rgba(255, 255, 255, 0.18);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin: 0 4px;
+  pointer-events: none;
+}
+
 .nav-link {
-  display: inline-block;
-  padding: 8px 14px;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  border-radius: var(--radius-sm);
-  position: relative;
-  white-space: nowrap !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-full);
   text-decoration: none;
   transition: all var(--transition-fast);
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover {
   color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.06);
 }
 
-.nav-link.active::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 12px;
-  right: 12px;
-  height: 2px;
-  background: var(--red-primary);
-  box-shadow: var(--red-glow);
-  border-radius: 2px;
+.nav-link.active {
+  color: var(--red-light);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--red-light);
+  background: rgba(240, 40, 31, 0.08);
 }
 
 .nav-actions {
@@ -1675,6 +1690,11 @@ textarea.form-control {
   
   .nav-links {
     display: none;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .nav-links li:not(:last-child)::after {
+    display: none !important;
   }
   
   .mobile-menu-toggle {
