@@ -53,6 +53,14 @@
     })();
   </script>
 
+  <!-- Preconnect & Preload for Zero-Buffer 3D Robot & Walkthrough (SEO & Performance Optimized) -->
+  <link rel="preconnect" href="https://prod.spline.design" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preload" href="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" as="fetch" crossorigin="anonymous">
+  <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js">
+  <link rel="preload" as="image" href="frames/frames_real_estate_walkthrough.mp4_60fps_webp/frame_000000.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="ink.png">
+
   <!-- Spline 3D Viewer Script Loader -->
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
@@ -150,7 +158,7 @@
     </div>
 
     <!-- Spline Watermark Blocker & Bottom Gradient Mask -->
-    <div style="position: absolute; bottom: 0; right: 0; z-index: 30; width: 260px; height: 95px; background: linear-gradient(to top left, #08080b, rgba(8,8,11,0.95), transparent); pointer-events: none;"></div>
+    <div class="spline-watermark-blocker"></div>
 
     <!-- Hero Content Overlay UI -->
     <div class="container relative z-20">
@@ -457,7 +465,7 @@
     <div class="container">
       <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: center;">
         <div>
-          <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-line); background: rgba(8,8,11,0.96); padding: 14px; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+          <div class="founder-profile-card">
             <!-- Photo Container - Clean & Unobstructed -->
             <div style="height: 420px; width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-line); margin-bottom: 14px; background: #040406;">
               <img src="founder.jpg" alt="Ankit Kumar — ADVENTURA Founder & Principal Consultant" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">

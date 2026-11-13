@@ -38,22 +38,22 @@
    LIGHT THEME DESIGN TOKENS & OVERRIDES (Codemure Style Radial Transition)
    ========================================================================== */
 [data-theme="light"] {
-  --bg-dark: #F6F7FA;
+  --bg-dark: #F8F9FC;
   --bg-card: #FFFFFF;
-  --bg-card-hover: #F0F2F6;
-  --bg-surface: #E8EBF2;
-  --border-line: rgba(0, 0, 0, 0.08);
+  --bg-card-hover: #F1F4F9;
+  --bg-surface: #EBF0F7;
+  --border-line: rgba(15, 23, 42, 0.09);
   --border-glow: rgba(240, 40, 31, 0.25);
 
-  --red-primary: #E02018;
-  --red-light: #F0281F;
+  --red-primary: #D32018;
+  --red-light: #E0281F;
   --red-deep: #9E1414;
-  --red-glow: 0 0 20px rgba(240, 40, 31, 0.2);
-  --red-glow-strong: 0 0 35px rgba(240, 40, 31, 0.35);
+  --red-glow: 0 4px 18px rgba(211, 32, 24, 0.2);
+  --red-glow-strong: 0 6px 28px rgba(211, 32, 24, 0.35);
 
-  --text-main: #0E0E14;
-  --text-muted: #545468;
-  --text-dim: #7A7A90;
+  --text-main: #090A0F;
+  --text-muted: #334155;
+  --text-dim: #64748B;
 }
 
 /* View Transitions API Configuration: Exact Organic Ink Bleed / Splatter Reveal (Codemure Style) */
@@ -89,6 +89,16 @@
     -webkit-mask-position: 100% 0%;
     mask-position: 100% 0%;
   }
+}
+
+/* Universal Mobile & Safari Theme Transition Overlay */
+.theme-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999999;
+  pointer-events: none;
+  overflow: hidden;
+  will-change: clip-path, -webkit-clip-path;
 }
 
 /* Light theme overrides for components */
@@ -136,38 +146,87 @@
     linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
 }
 
+[data-theme="light"] .hero-section {
+  background: radial-gradient(circle at 50% 25%, rgba(240, 40, 31, 0.04) 0%, #FFFFFF 65%, #F4F6FB 100%) !important;
+}
+
+[data-theme="light"] .hero-title {
+  color: #090A0F !important;
+}
+
+[data-theme="light"] .hero-description {
+  color: #1E293B !important;
+  font-weight: 500;
+}
+
 [data-theme="light"] .hero-highlights-bar {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(0, 0, 0, 0.08);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.07) !important;
 }
 
 [data-theme="light"] .highlight-item {
-  background: rgba(0, 0, 0, 0.02);
-  border-color: rgba(0, 0, 0, 0.06);
+  background: #F8FAFC !important;
+  border-color: rgba(15, 23, 42, 0.06) !important;
 }
 
 [data-theme="light"] .highlight-item strong {
-  color: #0E0E14;
+  color: #090A0F !important;
+}
+
+[data-theme="light"] .highlight-item span {
+  color: #64748B !important;
 }
 
 [data-theme="light"] .hero-emerald-badge {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(0, 0, 0, 0.1);
-  color: #0E0E14;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: #FFFFFF !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  color: #090A0F !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
 }
 
 [data-theme="light"] .btn-secondary {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(0, 0, 0, 0.12);
-  color: #0E0E14;
+  background: #FFFFFF !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+  color: #090A0F !important;
 }
 
 [data-theme="light"] .btn-secondary:hover {
-  background: #FFFFFF;
-  border-color: var(--red-primary);
-  color: var(--red-primary);
+  background: #FFFFFF !important;
+  border-color: var(--red-primary) !important;
+  color: var(--red-primary) !important;
+}
+
+.spline-watermark-blocker {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 30;
+  width: 260px;
+  height: 95px;
+  background: linear-gradient(to top left, #08080b, rgba(8,8,11,0.95), transparent);
+  pointer-events: none;
+  transition: background var(--transition-normal);
+}
+
+[data-theme="light"] .spline-watermark-blocker {
+  background: linear-gradient(to top left, #F8F9FC, rgba(248,249,252,0.95), transparent);
+}
+
+.founder-profile-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-line);
+  background: rgba(8,8,11,0.96);
+  padding: 14px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  transition: all var(--transition-normal);
+}
+
+[data-theme="light"] .founder-profile-card {
+  background: #FFFFFF !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06) !important;
 }
 
 [data-theme="light"] .page-hero {
@@ -241,6 +300,31 @@
   background: #FFFFFF;
   color: #0E0E14;
   border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .filter-btn {
+  background: #FFFFFF !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  color: #1E293B !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .filter-btn:hover,
+[data-theme="light"] .filter-btn.active {
+  background: var(--red-primary) !important;
+  color: #FFFFFF !important;
+  border-color: var(--red-primary) !important;
+  box-shadow: 0 4px 15px rgba(211, 32, 24, 0.3) !important;
+}
+
+[data-theme="light"] .stat-card {
+  background: #FFFFFF !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .stat-number {
+  color: #090A0F !important;
 }
 
 /* Universal High-Specificity Light Theme Typography & Element Overrides */

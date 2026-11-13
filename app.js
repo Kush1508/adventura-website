@@ -75,30 +75,34 @@
 
     if (!toggleBtn) return;
 
-    toggleBtn.addEventListener('click', (event) => {
+    let isTransitioning = false;
+
+    const performToggle = (event) => {
+      if (isTransitioning) return;
+
       const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
       const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-      // Check if View Transitions API is supported
+      const rect = toggleBtn.getBoundingClientRect();
+      const clientX = event.clientX || (event.touches && event.touches[0] && event.touches[0].clientX);
+      const clientY = event.clientY || (event.touches && event.touches[0] && event.touches[0].clientY);
+      const x = (typeof clientX === 'number' && clientX > 0) ? clientX : (rect.left + rect.width / 2);
+      const y = (typeof clientY === 'number' && clientY > 0) ? clientY : (rect.top + rect.height / 2);
+
+      const endRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      );
+
+      // Engine A: View Transitions API (Chrome / Edge / Supporting Browsers)
       if (document.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        const rect = toggleBtn.getBoundingClientRect();
-        const x = event.clientX || (rect.left + rect.width / 2);
-        const y = event.clientY || (rect.top + rect.height / 2);
-
-        // Calculate distance to the furthest corner of the viewport
-        const endRadius = Math.hypot(
-          Math.max(x, window.innerWidth - x),
-          Math.max(y, window.innerHeight - y)
-        );
-
+        isTransitioning = true;
         const transition = document.startViewTransition(() => {
           document.documentElement.setAttribute('data-theme', nextTheme);
           localStorage.setItem('adventura_theme', nextTheme);
         });
 
         transition.ready.then(() => {
-          // Native CSS @keyframes inkBleedSequence handles the steps(24) mask-position animation,
-          // and we provide Web Animations API invocation to guarantee frame-perfect synchronization
           try {
             document.documentElement.animate(
               {
@@ -113,15 +117,41 @@
               }
             );
           } catch (e) {
-            // CSS @keyframes fallback will run automatically
+            // CSS @keyframes fallback will run
           }
         });
+
+        transition.finished.finally(() => {
+          isTransitioning = false;
+        });
       } else {
-        // Fallback for older browsers
-        document.documentElement.setAttribute('data-theme', nextTheme);
-        localStorage.setItem('adventura_theme', nextTheme);
+        // Engine B: Universal Animated Ink-Ripple Transition (iOS Safari, Mobile Touch & Fallback)
+        isTransitioning = true;
+        const overlay = document.createElement('div');
+        overlay.className = 'theme-transition-overlay';
+        const targetBg = nextTheme === 'light' ? '#F8F9FC' : '#08080B';
+        overlay.style.backgroundColor = targetBg;
+        document.body.appendChild(overlay);
+
+        const anim = overlay.animate([
+          { clipPath: `circle(0px at ${x}px ${y}px)`, WebkitClipPath: `circle(0px at ${x}px ${y}px)` },
+          { clipPath: `circle(${endRadius * 1.05}px at ${x}px ${y}px)`, WebkitClipPath: `circle(${endRadius * 1.05}px at ${x}px ${y}px)` }
+        ], {
+          duration: 600,
+          easing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+          fill: 'forwards'
+        });
+
+        anim.onfinish = () => {
+          document.documentElement.setAttribute('data-theme', nextTheme);
+          localStorage.setItem('adventura_theme', nextTheme);
+          overlay.remove();
+          isTransitioning = false;
+        };
       }
-    });
+    };
+
+    toggleBtn.addEventListener('click', performToggle);
   }
 
   function initFastSplineMouseTracking() {
@@ -524,37 +554,31 @@
       }
     }
 
-    // Progressive background preloader during idle time
+    // High-speed, zero-buffer progressive frame preloader
     function startIdlePreload() {
-      // Step 1: Preload every 10th frame across the entire timeline
-      let stepIdx = 0;
-      function preloadStep() {
-        if (stepIdx < TOTAL_FRAMES) {
-          getOrLoadFrame(stepIdx);
-          stepIdx += 10;
-          if ('requestIdleCallback' in window) {
-            requestIdleCallback(preloadStep, { timeout: 200 });
-          } else {
-            setTimeout(preloadStep, 20);
+      // Priority 1: Immediately preload the first 35 frames + key milestone checkpoints
+      for (let i = 0; i < 35; i++) {
+        getOrLoadFrame(i);
+      }
+      for (let m = 35; m < TOTAL_FRAMES; m += 20) {
+        getOrLoadFrame(m);
+      }
+
+      // Priority 2: Fill in all remaining frames rapidly in non-blocking batches
+      let cursor = 0;
+      const BATCH_SIZE = 6;
+      function streamRemainingFrames() {
+        if (cursor < TOTAL_FRAMES) {
+          const end = Math.min(cursor + BATCH_SIZE, TOTAL_FRAMES);
+          for (let i = cursor; i < end; i++) {
+            getOrLoadFrame(i);
           }
-        } else {
-          // Step 2: Fill in the remaining frames sequentially
-          let fillIdx = 0;
-          function preloadFill() {
-            if (fillIdx < TOTAL_FRAMES) {
-              getOrLoadFrame(fillIdx);
-              fillIdx++;
-              if (fillIdx % 10 === 0) {
-                setTimeout(preloadFill, 15);
-              } else {
-                preloadFill();
-              }
-            }
-          }
-          preloadFill();
+          cursor = end;
+          // Use setTimeout with 12ms to yield to the main thread while caching quickly
+          setTimeout(streamRemainingFrames, 12);
         }
       }
-      setTimeout(preloadStep, 100);
+      setTimeout(streamRemainingFrames, 60);
     }
 
     // Scroll scrub handler
