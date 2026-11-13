@@ -2208,34 +2208,136 @@ textarea.form-control {
     justify-content: center;
   }
 
+  /* 1. Projects Showcase: Horizontal Thumb Snapping with 84% Peek */
   .projects-grid {
-    grid-template-columns: 1fr;
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 16px !important;
+    padding: 8px 16px 20px 16px !important;
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+  }
+  .projects-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+  .project-card {
+    flex: 0 0 84% !important;
+    max-width: 84% !important;
+    scroll-snap-align: center !important;
+    box-sizing: border-box !important;
   }
   
   .footer-grid {
     grid-template-columns: 1fr;
   }
 
+  /* 2. Hero Property Highlights: Sleek Horizontal Pill Carousel */
   .hero-highlights-bar {
-    grid-template-columns: 1fr !important;
-    gap: 12px;
-    padding: 16px;
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 8px !important;
+    padding: 8px 10px !important;
+    border-radius: 999px !important;
+    background: rgba(18, 18, 26, 0.75) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
-  
-  .floating-action-bar {
-    left: 12px;
-    right: 12px;
-    bottom: 14px;
-    justify-content: center;
-    padding: 6px 12px;
-    z-index: 999;
+  [data-theme="light"] .hero-highlights-bar {
+    background: rgba(255, 255, 255, 0.88) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
   }
-  
+  .hero-highlights-bar::-webkit-scrollbar {
+    display: none !important;
+  }
+  .highlight-item {
+    flex: 0 0 auto !important;
+    scroll-snap-align: start !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 6px 14px !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 999px !important;
+  }
+  [data-theme="light"] .highlight-item {
+    background: rgba(0, 0, 0, 0.04) !important;
+    border-color: rgba(0, 0, 0, 0.06) !important;
+  }
+  .highlight-item .highlight-icon {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.95rem !important;
+    margin-bottom: 0 !important;
+  }
+  .highlight-item span {
+    font-size: 0.68rem !important;
+    display: block !important;
+    line-height: 1.1 !important;
+  }
+  .highlight-item strong {
+    font-size: 0.8rem !important;
+    display: block !important;
+    line-height: 1.1 !important;
+  }
+  .hero-highlights-bar > div:last-child {
+    flex: 0 0 auto !important;
+  }
+  .hero-highlights-bar > div:last-child .btn {
+    height: 38px !important;
+    padding: 0 16px !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+    border-radius: 999px !important;
+  }
+
+  /* 3. Floating Quick-Action Bar: Refined Luxury Frosted Capsule (No Jittery Bouncing) */
+  .floating-action-bar {
+    left: 16px !important;
+    right: 16px !important;
+    bottom: 16px !important;
+    justify-content: center !important;
+    gap: 10px !important;
+    padding: 6px 10px !important;
+    background: rgba(15, 17, 23, 0.88) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 999px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+    animation: none !important;
+    z-index: 999 !important;
+  }
+  [data-theme="light"] .floating-action-bar {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+  }
+  .floating-btn {
+    padding: 8px 16px !important;
+    font-size: 0.76rem !important;
+    font-weight: 600 !important;
+    border-radius: 999px !important;
+    box-shadow: none !important;
+  }
   .floating-btn span {
     display: inline;
     font-size: 0.72rem;
+  }
+
+  /* 4. Section Padding & Ergonomics */
+  .section-padding {
+    padding: 55px 0 !important;
   }
 
   .walkthrough-section {
