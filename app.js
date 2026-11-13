@@ -412,21 +412,152 @@
   }
 
   /* ==========================================================================
-     SCROLLYTELLING WALKTHROUGH CONTROLLER
+     SCROLLYTELLING WALKTHROUGH CONTROLLER (60FPS FRAME-BY-FRAME CANVAS ENGINE)
      ========================================================================== */
   function initWalkthroughScroll() {
     const section = document.getElementById('walkthrough');
-    const scene1 = document.getElementById('scene1Bg');
-    const scene2 = document.getElementById('scene2Bg');
-    const scene3 = document.getElementById('scene3Bg');
+    const canvas = document.getElementById('walkthroughCanvas');
     const card1 = document.getElementById('walkCard1');
     const card2 = document.getElementById('walkCard2');
     const card3 = document.getElementById('walkCard3');
 
-    if (!section) return;
+    if (!section || !canvas) return;
 
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const TOTAL_FRAMES = 599;
+    const FRAME_BASE = 'frames/frames_real_estate_walkthrough.mp4_60fps_webp/frame_';
+
+    const getFramePath = (idx) => {
+      const padded = String(Math.max(0, Math.min(TOTAL_FRAMES - 1, idx))).padStart(6, '0');
+      return `${FRAME_BASE}${padded}.webp`;
+    };
+
+    // Frame cache array
+    const frameCache = new Array(TOTAL_FRAMES);
+    let currentFrameIndex = 0;
+    let lastRenderedImg = null;
     let walkthroughRaf = null;
 
+    // Load or return existing frame Image object
+    function getOrLoadFrame(idx) {
+      if (!frameCache[idx]) {
+        const img = new Image();
+        img.src = getFramePath(idx);
+        frameCache[idx] = img;
+      }
+      return frameCache[idx];
+    }
+
+    // High DPI aware canvas resize with object-fit: cover
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = canvas.clientWidth || window.innerWidth;
+      const h = canvas.clientHeight || window.innerHeight;
+      const targetW = Math.round(w * dpr);
+      const targetH = Math.round(h * dpr);
+
+      if (canvas.width !== targetW || canvas.height !== targetH) {
+        canvas.width = targetW;
+        canvas.height = targetH;
+      }
+      if (lastRenderedImg) {
+        drawFrame(lastRenderedImg);
+      }
+    }
+
+    // Render frame to canvas with object-fit: cover math
+    function drawFrame(img) {
+      if (!img || !img.complete || img.naturalWidth === 0) return;
+      lastRenderedImg = img;
+      const cw = canvas.width;
+      const ch = canvas.height;
+      const iw = img.naturalWidth;
+      const ih = img.naturalHeight;
+
+      const scale = Math.max(cw / iw, ch / ih);
+      const dw = iw * scale;
+      const dh = ih * scale;
+      const dx = (cw - dw) / 2;
+      const dy = (ch - dh) / 2;
+
+      ctx.drawImage(img, dx, dy, dw, dh);
+    }
+
+    // Display target frame index, falling back to nearest loaded frame to avoid flickering
+    function showFrame(idx) {
+      currentFrameIndex = idx;
+      const targetImg = getOrLoadFrame(idx);
+
+      if (targetImg.complete && targetImg.naturalWidth > 0) {
+        drawFrame(targetImg);
+      } else {
+        // Find nearest loaded frame
+        let nearest = null;
+        for (let offset = 1; offset < 40; offset++) {
+          const prev = idx - offset;
+          if (prev >= 0 && frameCache[prev] && frameCache[prev].complete && frameCache[prev].naturalWidth > 0) {
+            nearest = frameCache[prev];
+            break;
+          }
+          const next = idx + offset;
+          if (next < TOTAL_FRAMES && frameCache[next] && frameCache[next].complete && frameCache[next].naturalWidth > 0) {
+            nearest = frameCache[next];
+            break;
+          }
+        }
+        if (nearest) {
+          drawFrame(nearest);
+        }
+
+        targetImg.onload = () => {
+          if (currentFrameIndex === idx) {
+            drawFrame(targetImg);
+          }
+        };
+      }
+
+      // Prefetch window ahead and behind
+      const prefetchStart = Math.max(0, idx - 15);
+      const prefetchEnd = Math.min(TOTAL_FRAMES - 1, idx + 30);
+      for (let i = prefetchStart; i <= prefetchEnd; i++) {
+        getOrLoadFrame(i);
+      }
+    }
+
+    // Progressive background preloader during idle time
+    function startIdlePreload() {
+      // Step 1: Preload every 10th frame across the entire timeline
+      let stepIdx = 0;
+      function preloadStep() {
+        if (stepIdx < TOTAL_FRAMES) {
+          getOrLoadFrame(stepIdx);
+          stepIdx += 10;
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(preloadStep, { timeout: 200 });
+          } else {
+            setTimeout(preloadStep, 20);
+          }
+        } else {
+          // Step 2: Fill in the remaining frames sequentially
+          let fillIdx = 0;
+          function preloadFill() {
+            if (fillIdx < TOTAL_FRAMES) {
+              getOrLoadFrame(fillIdx);
+              fillIdx++;
+              if (fillIdx % 10 === 0) {
+                setTimeout(preloadFill, 15);
+              } else {
+                preloadFill();
+              }
+            }
+          }
+          preloadFill();
+        }
+      }
+      setTimeout(preloadStep, 100);
+    }
+
+    // Scroll scrub handler
     const updateWalkthrough = () => {
       const rect = section.getBoundingClientRect();
       const sectionHeight = section.offsetHeight - window.innerHeight;
@@ -434,51 +565,57 @@
 
       const progress = Math.max(0, Math.min(1, (-rect.top) / sectionHeight));
 
-      // Scene 1, 2, 3 switching
-      if (progress < 0.35) {
-        if (scene1) scene1.classList.add('active');
-        if (scene2) scene2.classList.remove('active');
-        if (scene3) scene3.classList.remove('active');
-      } else if (progress < 0.70) {
-        if (scene1) scene1.classList.remove('active');
-        if (scene2) scene2.classList.add('active');
-        if (scene3) scene3.classList.remove('active');
-      } else {
-        if (scene1) scene1.classList.remove('active');
-        if (scene2) scene2.classList.remove('active');
-        if (scene3) scene3.classList.add('active');
-      }
+      // Calculate exact frame index from scroll progress
+      const targetFrame = Math.min(TOTAL_FRAMES - 1, Math.floor(progress * (TOTAL_FRAMES - 1)));
+      showFrame(targetFrame);
 
-      // Card 1: active immediately upon entering
+      // Card 1: 0% - 35%
       if (progress < 0.35) {
         if (card1) card1.classList.add('active');
       } else {
         if (card1) card1.classList.remove('active');
       }
 
-      // Card 2
+      // Card 2: 35% - 70%
       if (progress >= 0.35 && progress < 0.70) {
         if (card2) card2.classList.add('active');
       } else {
         if (card2) card2.classList.remove('active');
       }
 
-      // Card 3
+      // Card 3: 70% - 100%
       if (progress >= 0.70) {
         if (card3) card3.classList.add('active');
       } else {
         if (card3) card3.classList.remove('active');
       }
+
       walkthroughRaf = null;
     };
 
-    // Run once on load to ensure scene1 and card1 are displayed immediately
+    // Initialize initial frame 0 and set up listeners
+    resizeCanvas();
+    const frame0 = getOrLoadFrame(0);
+    if (frame0.complete && frame0.naturalWidth > 0) {
+      drawFrame(frame0);
+    } else {
+      frame0.onload = () => {
+        resizeCanvas();
+        drawFrame(frame0);
+      };
+    }
+
     updateWalkthrough();
+    startIdlePreload();
 
     window.addEventListener('scroll', () => {
       if (!walkthroughRaf) {
         walkthroughRaf = requestAnimationFrame(updateWalkthrough);
       }
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
     }, { passive: true });
   }
 
