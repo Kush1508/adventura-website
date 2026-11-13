@@ -253,14 +253,15 @@
 }
 
 [data-theme="light"] .glass-walkthrough-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.58) 100%);
-  border: 1.5px solid rgba(255, 255, 255, 0.95);
-  border-top: 2px solid #FFFFFF;
-  border-left: 2px solid #FFFFFF;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   box-shadow: 
-    0 30px 60px -15px rgba(0, 0, 0, 0.12),
-    0 10px 24px -8px rgba(0, 0, 0, 0.06),
-    inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.98);
+    0 6px 16px rgba(0, 0, 0, 0.15), 
+    0 0 20px rgba(0, 0, 0, 0.08),
+    inset 2px 2px 1px 0 rgba(255, 255, 255, 0.6),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 [data-theme="light"] .glass-walkthrough-card h3 {
@@ -1145,17 +1146,15 @@ spline-viewer::part(canvas) {
   max-width: calc(100vw - 64px);
   padding: 34px 38px;
   border-radius: 28px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.46) 100%);
-  backdrop-filter: blur(28px) saturate(190%);
-  -webkit-backdrop-filter: blur(28px) saturate(190%);
-  border: 1.5px solid rgba(255, 255, 255, 0.85);
-  border-top: 2px solid rgba(255, 255, 255, 0.95);
-  border-left: 2px solid rgba(255, 255, 255, 0.95);
+  background: rgba(18, 18, 26, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 
-    0 30px 60px -15px rgba(0, 0, 0, 0.22),
-    0 10px 24px -8px rgba(0, 0, 0, 0.1),
-    inset 0 1.5px 2px 0 rgba(255, 255, 255, 0.95),
-    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.04);
+    0 6px 20px rgba(0, 0, 0, 0.35), 
+    0 0 25px rgba(0, 0, 0, 0.2),
+    inset 2px 2px 1px 0 rgba(255, 255, 255, 0.35),
+    inset -1px -1px 1px 1px rgba(255, 255, 255, 0.15);
   opacity: 0;
   transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
@@ -1183,17 +1182,17 @@ spline-viewer::part(canvas) {
 }
 
 .card-stage-badge.red-badge {
-  background: rgba(240, 40, 31, 0.12);
-  border: 1px solid rgba(240, 40, 31, 0.28);
-  color: #D32F2F !important;
-  box-shadow: 0 4px 12px rgba(240, 40, 31, 0.1);
+  background: rgba(240, 40, 31, 0.16);
+  border: 1px solid rgba(240, 40, 31, 0.4);
+  color: #F87171 !important;
+  box-shadow: 0 4px 12px rgba(240, 40, 31, 0.15);
 }
 
 .card-stage-badge.green-badge {
-  background: rgba(16, 185, 129, 0.14);
-  border: 1px solid rgba(16, 185, 129, 0.32);
-  color: #059669 !important;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+  background: rgba(16, 185, 129, 0.16);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34D399 !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
 }
 
 .glass-walkthrough-card h3 {
@@ -1202,18 +1201,18 @@ spline-viewer::part(canvas) {
   font-weight: 700;
   margin-bottom: 12px;
   line-height: 1.25;
-  color: #0F172A !important;
+  color: #FFFFFF !important;
   letter-spacing: -0.01em;
-  text-shadow: none !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
 }
 
 .glass-walkthrough-card p {
-  color: #334155 !important;
+  color: #E2E8F0 !important;
   font-size: 0.96rem;
   line-height: 1.65;
   opacity: 1;
   font-weight: 450;
-  text-shadow: none !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
 }
 
 .card-footer-tags {
@@ -1221,23 +1220,22 @@ spline-viewer::part(canvas) {
   gap: 12px;
   margin-top: 22px;
   padding-top: 18px;
-  border-top: 1px solid rgba(15, 23, 42, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 0.88rem;
   font-weight: 600;
   flex-wrap: wrap;
 }
 
 .card-footer-tags span {
-  color: #0F172A !important;
+  color: #FFFFFF !important;
   display: flex;
   align-items: center;
   gap: 8px;
-  text-shadow: none !important;
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.12);
   padding: 6px 14px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .glass-walkthrough-card .btn-primary {
@@ -2249,11 +2247,11 @@ textarea.form-control {
     left: 14px !important;
     right: 14px !important;
     top: auto !important;
-    bottom: 24px !important;
+    bottom: 84px !important;
     width: auto !important;
     max-width: none !important;
     transform: translateY(20px) !important;
-    padding: 20px 22px !important;
+    padding: 16px 18px !important;
     border-radius: 24px !important;
   }
 
