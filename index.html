@@ -53,16 +53,10 @@
     })();
   </script>
 
-  <!-- Preconnect & Preload for Zero-Buffer 3D Robot & Walkthrough (SEO & Performance Optimized) -->
-  <link rel="preconnect" href="https://prod.spline.design" crossorigin>
-  <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="preload" href="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" as="fetch" crossorigin="anonymous">
-  <link rel="modulepreload" href="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js">
+  <!-- Preload Cinematic Hero Video & Key Walkthrough Frame -->
+  <link rel="preload" href="public/videos/VN20261114_165304.mp4" as="video" type="video/mp4">
   <link rel="preload" as="image" href="frames/frames_real_estate_walkthrough.mp4_60fps_webp/frame_000000.webp" fetchpriority="high">
   <link rel="preload" as="image" href="ink.png">
-
-  <!-- Spline 3D Viewer Script Loader -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -85,19 +79,19 @@
   <!-- Floating Side Scroll Tracker / Radar -->
   <div class="scroll-radar-tracker">
     <div class="radar-dot active" data-section="home" onclick="window.location.hash='home'">
-      <span class="radar-tooltip">3D Robot Hero</span>
+      <span class="radar-tooltip">Hero Video</span>
     </div>
     <div class="radar-dot" data-section="walkthrough" onclick="window.location.hash='walkthrough'">
       <span class="radar-tooltip">Walkthrough</span>
     </div>
-    <div class="radar-dot" data-section="projects" onclick="window.location.hash='projects'">
-      <span class="radar-tooltip">Projects</span>
+    <div class="radar-dot" data-section="vision" onclick="window.location.hash='vision'">
+      <span class="radar-tooltip">Brand Vision</span>
     </div>
-    <div class="radar-dot" data-section="calculator" onclick="window.location.hash='calculator'">
-      <span class="radar-tooltip">EMI Calculator</span>
+    <div class="radar-dot" data-section="testimonials" onclick="window.location.hash='testimonials'">
+      <span class="radar-tooltip">Testimonials</span>
     </div>
-    <div class="radar-dot" data-section="contact" onclick="window.location.hash='contact'">
-      <span class="radar-tooltip">Contact Us</span>
+    <div class="radar-dot" data-section="consultation" onclick="window.location.hash='consultation'">
+      <span class="radar-tooltip">VIP Advisory</span>
     </div>
   </div>
 
@@ -131,11 +125,7 @@
           <i class="ri-sun-line sun-icon"></i>
         </button>
 
-        <a href="contact.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
-          Inquire Now
-        </a>
-
-        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
           <i class="ri-menu-4-line"></i>
         </button>
       </div>
@@ -144,21 +134,22 @@
   </header>
 
   <!-- ==========================================================================
-       COMPONENT 1: INTERACTIVE 3D ROBOT HERO SECTION (Hero3D.tsx)
+       COMPONENT 1: CINEMATIC VIDEO HERO SECTION
        ========================================================================== -->
   <section class="hero-section" id="home">
     
-    <!-- Spline 3D Interactive Robot Scene Layer -->
-    <div class="spline-container" style="transform: translateZ(0); will-change: transform; -webkit-backface-visibility: hidden;">
-      <div class="spline-loader" id="splineLoader">
-        <div class="spline-spinner"></div>
-        <span class="spline-loader-text">Loading 3D Scene</span>
-      </div>
-      <spline-viewer url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" loading-anim style="width: 100%; height: 100%; display: block;"></spline-viewer>
+    <!-- Cinematic Hero Video Background Layer -->
+    <div class="hero-video-container" style="position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;">
+      <video id="heroBgVideo" autoplay loop muted playsinline preload="auto" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.72) contrast(1.05);">
+        <source src="public/videos/VN20261114_165304.mp4" type="video/mp4">
+        <source src="/public/videos/VN20261114_165304.mp4" type="video/mp4">
+      </video>
+      <!-- Dark Radial Vignette & Gradient Overlay for Sharp Foreground Text Legibility -->
+      <div class="hero-video-overlay" style="position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(8, 8, 11, 0.42) 0%, rgba(8, 8, 11, 0.8) 75%, rgba(8, 8, 11, 0.96) 100%); pointer-events: none;"></div>
     </div>
 
-    <!-- Spline Watermark Blocker & Bottom Gradient Mask -->
-    <div class="spline-watermark-blocker"></div>
+    <!-- Bottom Gradient Mask for Seamless Hero Transition -->
+    <div class="spline-watermark-blocker" style="position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to top, var(--bg-dark, #08080b) 15%, transparent 100%); pointer-events: none; z-index: 2;"></div>
 
     <!-- Hero Content Overlay UI -->
     <div class="container relative z-20">
@@ -220,7 +211,7 @@
           </div>
 
           <div style="display: flex; align-items: center; justify-content: flex-end;">
-            <a href="#projects" class="btn btn-primary" style="width: 100%; height: 48px; justify-content: center;">
+            <a href="projects.html" class="btn btn-primary" style="width: 100%; height: 48px; justify-content: center;">
               Explore Corridors <i class="ri-arrow-right-line"></i>
             </a>
           </div>
@@ -328,39 +319,15 @@
           <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">We transform strategic rural and semi-urban corridors into modern master-planned townships equipped with wide blacktop roads, solar streetlights, parks, and high capital growth.</p>
         </div>
       </div>
+
+      <div style="text-align: center; margin-top: 10px;">
+        <a href="about.html" class="btn btn-secondary full-story-btn">
+          <i class="ri-shield-star-line"></i> Read Full Story & Legal Verification Standards &rarr;
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- ==========================================================================
-       FEATURED UPCOMING PROJECTS SHOWCASE
-       ========================================================================== -->
-  <section class="section-padding" id="projects">
-    <div class="container">
-      
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <h2>Featured Upcoming Projects</h2>
-          <p>Explore high-value residential plots, commercial developments, and luxury layouts</p>
-        </div>
-
-        <div class="project-filters">
-          <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="ongoing">🚧 Current Ongoing Projects</button>
-          <button class="filter-btn" data-filter="upcoming">🚀 Upcoming Projects</button>
-          <button class="filter-btn" data-filter="completed">✅ Completed Projects</button>
-          <button class="filter-btn" data-filter="residential">Residential Plots</button>
-          <button class="filter-btn" data-filter="commercial">Commercial Spaces</button>
-          <button class="filter-btn" data-filter="villa">Villa Townships</button>
-        </div>
-      </div>
-
-      <!-- Dynamic Projects Grid -->
-      <div class="projects-grid" id="projectsContainer">
-        <!-- Rendered via app.js -->
-      </div>
-
-    </div>
-  </section>
 
   <!-- ==========================================================================
        CLIENT TESTIMONIALS & REVIEWS SECTION
@@ -387,234 +354,63 @@
     </div>
   </section>
 
-    </div>
-  </section>
-
   <!-- ==========================================================================
-       PROPERTY EMI & BUDGET CALCULATOR
+       EXECUTIVE LAND ADVISORY & GUIDED SITE VISIT BANNER
        ========================================================================== -->
-  <section class="section-padding" id="calculator">
+  <section class="section-padding" id="consultation" style="background: var(--bg-dark); border-top: 1px solid var(--border-line);">
     <div class="container">
       
-      <div class="section-header" style="justify-content: center; text-align: center;">
-        <div class="section-title-wrap" style="max-width: 600px;">
-          <h2>Property EMI & Land Financial Calculator</h2>
-          <p>Estimate your monthly installment and total investment budget with ease</p>
-        </div>
-      </div>
-
-      <div class="calc-card">
-        
-        <div class="calc-inputs">
-          <div class="range-group">
-            <div class="range-header">
-              <label>Plot / Property Value</label>
-              <span id="displayAmountVal">₹15 Lakhs</span>
-            </div>
-            <input type="range" id="calcAmount" min="5" max="100" value="15" step="1">
-          </div>
-
-          <div class="range-group">
-            <div class="range-header">
-              <label>Loan Tenure</label>
-              <span id="displayTenureVal">10 Years</span>
-            </div>
-            <input type="range" id="calcTenure" min="1" max="25" value="10" step="1">
-          </div>
-
-          <div class="range-group">
-            <div class="range-header">
-              <label>Estimated Interest Rate (p.a.)</label>
-              <span id="displayRateVal">8.5%</span>
-            </div>
-            <input type="range" id="calcRate" min="5" max="15" value="8.5" step="0.25">
-          </div>
-        </div>
-
-        <div class="calc-results">
-          <div class="emi-display-box">
-            <span>Estimated Monthly EMI</span>
-            <div class="emi-amount" id="calculatedEMI">₹18,602</div>
-          </div>
-
-          <div class="calc-breakdown">
-            <div class="breakdown-row">
-              <span>Principal Amount:</span>
-              <strong id="totalPrincipal">₹15,00,000</strong>
-            </div>
-            <div class="breakdown-row">
-              <span>Total Interest Payable:</span>
-              <strong id="totalInterest" style="color: var(--red-light);">₹7,32,240</strong>
-            </div>
-            <div class="breakdown-row">
-              <span>Total Amount Payable:</span>
-              <strong id="totalPayable">₹22,32,240</strong>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       FOUNDER LEADERSHIP PROFILE SECTION
-       ========================================================================== -->
-  <section class="section-padding" id="founder" style="background: var(--bg-dark); border-top: 1px solid var(--border-line);">
-    <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: center;">
-        <div>
-          <div class="founder-profile-card">
-            <!-- Photo Container - Clean & Unobstructed -->
-            <div style="height: 420px; width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-line); margin-bottom: 14px; background: #040406;">
-              <img src="founder.jpg" alt="Ankit Kumar — ADVENTURA Founder & Principal Consultant" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
-            </div>
-            
-            <!-- Dedicated Credential Card Below Photo -->
-            <div style="background: var(--bg-card); padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-line);">
-              <span style="color: var(--red-light); font-family: var(--font-mono); font-size: 0.78rem; font-weight: 600; display: block; margin-bottom: 4px;"><i class="ri-sparkling-fill"></i> Founder & Principal Consultant</span>
-              <h3 style="font-size: 1.35rem; color: var(--text-main); margin: 0 0 4px 0;">Ankit Kumar</h3>
-              <p style="font-size: 0.84rem; color: var(--text-muted); margin: 0 0 10px 0; line-height: 1.5;">Leading ADVENTURA across Gaya, Bodhgaya, AP Colony & Bihar.</p>
-              <div style="border-top: 1px solid var(--border-line); padding-top: 8px; display: flex; justify-content: space-between; font-size: 0.75rem; font-family: var(--font-mono); color: #10B981;">
-                <span><i class="ri-shield-check-fill"></i> Verified Leadership</span>
-                <span style="color: var(--text-dim);">Gaya, Bihar</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <span style="font-size: 0.75rem; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 2px; color: var(--red-light); font-weight: 600; display: block; margin-bottom: 10px;">Leadership & Commitment</span>
-          <h2 style="font-size: 2.2rem; color: var(--text-main); margin-bottom: 20px; line-height: 1.2;">"Every Land Buyer Deserves Complete Security & High ROI"</h2>
-          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 16px;">As the founder of <strong style="color: var(--text-main);">ADVENTURA</strong>, my vision has always been grounded in a simple promise: to eliminate ambiguity and build lasting wealth for families and investors buying property across Bihar.</p>
-          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px;">Real estate in high-growth corridors shouldn't be stressful. We ensure every plot parcel comes backed by 100% verified legal title deeds, government survey line accuracy, transparent pricing, and immediate mutation support.</p>
-
-          <div style="background: rgba(240,40,31,0.08); border-left: 4px solid var(--red-primary); padding: 16px 20px; border-radius: 8px; margin-bottom: 24px;">
-            <em style="color: var(--text-main); font-size: 1rem;">"Our core motto 'Trust, Transparency and Transformation' (Advertise your AdVenture) is our founding pledge. We don't just sell plots; we partner with you to turn your property aspirations into secured real estate assets."</em>
-          </div>
-
-          <div style="display: flex; gap: 14px; flex-wrap: wrap;">
-            <a href="tel:+916299130640" class="btn btn-primary">
-              <i class="ri-phone-fill"></i> Speak with Founder (+91 6299130640)
-            </a>
-            <a href="#contact" class="btn btn-secondary">
-              Book Personal Consultation
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================================
-       GLOBAL CONTACT & LEAD CAPTURE SECTION
-       ========================================================================== -->
-  <section class="section-padding" id="contact" style="background: rgba(255,255,255,0.01); border-top: 1px solid var(--border-line);">
-    <div class="container">
-      
-      <div class="contact-grid">
-        
-        <div class="contact-info-card">
-          <div>
-            <span class="hero-emerald-badge" style="margin-bottom: 12px; display: inline-flex;">
+      <div class="consultation-cta-card">
+        <div class="consultation-cta-grid">
+          <div class="consultation-main-col">
+            <span class="hero-emerald-badge consultation-badge">
               <span class="emerald-pulse-dot"></span>
-              <span>Get In Touch</span>
+              <span>VIP Private Advisory • Gaya, Patna & Across Bihar</span>
             </span>
-            <h2 style="font-size: 2.2rem; margin-top: 10px; margin-bottom: 16px;">
-              Ready to Invest in Your Future Landmark?
+            <h2 class="consultation-heading">
+              Ready to Secure Your Plot with 100% Legal Title Guarantee?
             </h2>
-            <p style="color: var(--text-muted); line-height: 1.7;">
-              Connect with Adventura's senior real estate consultants for immediate plot availability, layout maps, and site visit scheduling.
+            <p class="consultation-desc">
+              Connect directly with Founder & Principal Consultant <strong style="color: var(--text-main);">Ankit Kumar</strong>. Get instant physical plot demarcation maps, jamabandi mutation documents, and complimentary site visits across Gaya, Bodhgaya, AP Colony, and highway corridors.
             </p>
-
-            <div class="contact-methods">
-              <div class="contact-method-item">
-                <div class="contact-icon-box"><i class="ri-phone-fill"></i></div>
-                <div class="contact-details">
-                  <h5>Direct Call</h5>
-                  <a href="tel:+916299130640">+91 6299130640</a> / 
-                  <a href="tel:+919065150820">+91 9065150820</a>
-                </div>
-              </div>
-
-              <div class="contact-method-item">
-                <div class="contact-icon-box"><i class="ri-mail-open-fill"></i></div>
-                <div class="contact-details">
-                  <h5>Official Email</h5>
-                  <a href="mailto:advntrawork@gmail.com">advntrawork@gmail.com</a>
-                </div>
-              </div>
-
-              <div class="contact-method-item">
-                <div class="contact-icon-box"><i class="ri-map-pin-2-fill"></i></div>
-                <div class="contact-details">
-                  <h5>Headquarters</h5>
-                  <p>Gaya & Regional Branches across Bihar, India</p>
-                </div>
-              </div>
+            <div class="consultation-cta-actions">
+              <a href="tel:+916299130640" class="btn btn-primary consultation-btn-phone">
+                <i class="ri-phone-fill"></i> Call Founder: +91 6299130640
+              </a>
+              <a href="contact.html" class="btn btn-secondary consultation-btn-visit">
+                <i class="ri-calendar-check-line"></i> Book Guided Site Visit
+              </a>
             </div>
           </div>
 
-          <div>
-            <h5 style="color: var(--text-dim); text-transform: uppercase; font-size: 0.8rem; margin-top: 30px;">Follow Adventura Media</h5>
-            <div class="social-links-wrap">
-              <a href="https://www.instagram.com/ankitrealty__/" target="_blank" rel="noopener" class="social-btn" title="Instagram">
-                <i class="ri-instagram-line"></i>
+          <div class="consultation-sub-card">
+            <div class="consultation-sub-block">
+              <span class="consultation-sub-tag" style="color: var(--red-light);">
+                <i class="ri-calculator-line"></i> Investment Financial Tools
+              </span>
+              <h4 class="consultation-sub-title">Planning Your Property Budget?</h4>
+              <p class="consultation-sub-text">
+                Use our full-featured Property EMI & Land Investment Calculator to simulate installments, tenures, and interest breakdowns.
+              </p>
+              <a href="calculator.html" class="btn btn-secondary consultation-sub-btn">
+                Open EMI Calculator <i class="ri-arrow-right-line"></i>
               </a>
-              <a href="https://www.youtube.com/@Ankit_Realty" target="_blank" rel="noopener" class="social-btn" title="YouTube Channel">
-                <i class="ri-youtube-line"></i>
-              </a>
-              <a href="https://wa.me/916299130640" target="_blank" rel="noopener" class="social-btn" title="WhatsApp Chat">
-                <i class="ri-whatsapp-line"></i>
+            </div>
+
+            <div class="consultation-sub-block border-top">
+              <span class="consultation-sub-tag" style="color: var(--emerald-accent);">
+                <i class="ri-user-star-line"></i> Leadership & Philosophy
+              </span>
+              <h4 class="consultation-sub-title">Meet Founder Ankit Kumar</h4>
+              <p class="consultation-sub-text">
+                Read our founding story, legal title audit methodology, and vision for transforming Bihar real estate.
+              </p>
+              <a href="about.html" class="btn btn-secondary consultation-sub-btn">
+                Read Our Story & Vision <i class="ri-arrow-right-line"></i>
               </a>
             </div>
           </div>
         </div>
-
-        <!-- Interactive Lead Form -->
-        <div class="lead-form-card">
-          <h3 style="font-size: 1.6rem; margin-bottom: 8px;">Book Consultation / Site Visit</h3>
-          <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 24px;">Fill out the form below for instant call back & project details.</p>
-
-          <form id="inquiryForm">
-            <div class="form-group">
-              <label for="inquiryName">Full Name *</label>
-              <input type="text" id="inquiryName" class="form-control" placeholder="Enter your full name" required>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-              <div class="form-group">
-                <label for="inquiryPhone">Phone Number *</label>
-                <input type="tel" id="inquiryPhone" class="form-control" placeholder="+91 Mobile number" required>
-              </div>
-              <div class="form-group">
-                <label for="inquiryEmail">Email Address</label>
-                <input type="email" id="inquiryEmail" class="form-control" placeholder="name@domain.com">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="inquiryInterest">Interested In *</label>
-              <select id="inquiryInterest" class="form-control" required>
-                <option value="Residential Plots">Residential Plots (Karmauni / Khizersarai / Gaya)</option>
-                <option value="Commercial Spaces">Commercial Spaces (AP Colony / CRPF Belt)</option>
-                <option value="Luxury Villa Plots">Luxury Villa Plots (Bodhgaya Corridor)</option>
-                <option value="General Land Consultation">General Real Estate Consultancy</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="inquiryMessage">Your Requirement / Message</label>
-              <textarea id="inquiryMessage" class="form-control" placeholder="Tell us your budget, plot size preference, or expected possession timeframe..."></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width: 100%; height: 50px; font-size: 1rem;">
-              <i class="ri-send-plane-fill"></i> Submit Inquiry & Get Callback
-            </button>
-          </form>
-        </div>
-
       </div>
 
     </div>
@@ -678,25 +474,62 @@
           &copy; 2026 ADVENTURA Real Estate Consultant. All Rights Reserved. Tagline: <em>Trust, Transparency and Transformation.</em>
         </div>
         <div>
-          <span>Next.js App Router Architecture • Spline 3D Robot • Framer Motion</span>
+          <span>Luxury Architectural 3D Interior • Interactive Guided Walkthrough • Framer Motion</span>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- ==========================================================================
-       STICKY FLOATING QUICK-ACTION BAR (CALL & WHATSAPP)
+       MOBILE FLOATING BOTTOM NAVIGATION DOCK (Exact Reference Design)
        ========================================================================== -->
-  <div class="floating-action-bar">
-    <a href="tel:+916299130640" class="floating-btn call-btn">
-      <i class="ri-phone-fill"></i>
-      <span>Call Us: +91 6299130640</span>
+  <nav class="mobile-bottom-dock" aria-label="Mobile Navigation">
+    <a href="index.html" class="dock-item active">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9.5L12 3l9 6.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.5z"/>
+          <line x1="10" y1="13" x2="14" y2="13"/>
+        </svg>
+      </div>
+      <span class="dock-label">Home</span>
     </a>
-    <a href="https://wa.me/916299130640?text=Hi%20Adventura%2C%20I%20am%20interested%20in%20your%20real%20estate%20projects" target="_blank" rel="noopener" class="floating-btn whatsapp-btn">
-      <i class="ri-whatsapp-fill"></i>
-      <span>WhatsApp Chat</span>
+
+    <a href="projects.html" class="dock-item">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="14" r="4.5"/>
+          <circle cx="16" cy="8" r="3"/>
+          <circle cx="17" cy="16" r="2.2"/>
+        </svg>
+      </div>
+      <span class="dock-label">Projects</span>
     </a>
-  </div>
+
+    <a href="calculator.html" class="dock-item">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="16" height="20" x="4" y="2" rx="3"/>
+          <line x1="8" y1="6" x2="16" y2="6"/>
+          <circle cx="8.5" cy="11" r="0.8" fill="currentColor"/>
+          <circle cx="12" cy="11" r="0.8" fill="currentColor"/>
+          <circle cx="15.5" cy="11" r="0.8" fill="currentColor"/>
+          <circle cx="8.5" cy="15" r="0.8" fill="currentColor"/>
+          <circle cx="12" cy="15" r="0.8" fill="currentColor"/>
+          <circle cx="15.5" cy="15" r="0.8" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="dock-label">EMI Calc</span>
+    </a>
+
+    <a href="contact.html" class="dock-item">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <span class="dock-label">Contact</span>
+    </a>
+  </nav>
 
   <!-- ==========================================================================
        PROJECT DETAIL MODAL
@@ -737,7 +570,7 @@
             <input type="text" id="reviewName" class="form-control" placeholder="e.g. Rajesh Kumar" required style="width: 100%; background: var(--bg-card); border: 1px solid var(--border-line); color: var(--text-main); padding: 10px 14px; border-radius: 8px;">
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-grid-2col">
             <div class="form-group">
               <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Profession / Role</label>
               <input type="text" id="reviewRole" class="form-control" placeholder="e.g. Doctor / Businessman" style="width: 100%; background: var(--bg-card); border: 1px solid var(--border-line); color: var(--text-main); padding: 10px 14px; border-radius: 8px;">
@@ -748,7 +581,7 @@
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-grid-2col">
             <div class="form-group">
               <label style="color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase;">Project Purchased / Visited *</label>
               <select id="reviewProject" class="form-control" style="width: 100%; background: var(--bg-card); border: 1px solid var(--border-line); color: var(--text-main); padding: 10px 14px; border-radius: 8px;">

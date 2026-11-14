@@ -44,6 +44,7 @@
       }
     }
   }
+  </script>
   <script>
     (function(){
       const t = localStorage.getItem('adventura_theme');
@@ -84,10 +85,7 @@
           <i class="ri-sun-line sun-icon"></i>
         </button>
 
-        <a href="tel:+916299130640" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
-          <i class="ri-phone-fill"></i> Call Now
-        </a>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
           <i class="ri-menu-4-line"></i>
         </button>
       </div>
@@ -205,7 +203,7 @@
         <span style="font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; color: var(--red-light); letter-spacing: 1.5px; font-weight: 600;">Frequently Asked Questions</span>
         <h3 style="font-size: 1.8rem; color: var(--text-main); margin: 8px 0 24px 0;">Answers To Common Buyer Inquiries</h3>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px;">
           <div>
             <h4 style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-question-line" style="color: var(--red-light);"></i> Is registry immediate upon full payment?</h4>
             <p style="color: var(--text-muted); font-size: 0.88rem; line-height: 1.6;">Yes. Dream City Phase 4 is fully documented under Official Registration No: 00340. Once your payment terms are completed, immediate registry with Dakhil-Kharij assistance is executed.</p>
@@ -231,17 +229,6 @@
     </div>
   </section>
 
-  <!-- Floating Mobile Action Bar -->
-  <div class="floating-action-bar">
-    <a href="tel:+916299130640" class="floating-btn call-btn">
-      <i class="ri-phone-fill"></i>
-      <span>Call: +91 6299130640</span>
-    </a>
-    <a href="https://wa.me/916299130640?text=Hi%20Adventura%20Team%2C%20I%20am%20ready%20to%20book%20a%20site%20visit." target="_blank" class="floating-btn whatsapp-btn">
-      <i class="ri-whatsapp-fill"></i>
-      <span>WhatsApp Chat</span>
-    </a>
-  </div>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -291,6 +278,57 @@
       </div>
     </div>
   </footer>
+ 
+  <!-- ==========================================================================
+       MOBILE FLOATING BOTTOM NAVIGATION DOCK (Exact Reference Design)
+       ========================================================================== -->
+  <nav class="mobile-bottom-dock" aria-label="Mobile Navigation">
+    <a href="index.html" class="dock-item">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9.5L12 3l9 6.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.5z"/>
+          <line x1="10" y1="13" x2="14" y2="13"/>
+        </svg>
+      </div>
+      <span class="dock-label">Home</span>
+    </a>
+
+    <a href="projects.html" class="dock-item">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="14" r="4.5"/>
+          <circle cx="16" cy="8" r="3"/>
+          <circle cx="17" cy="16" r="2.2"/>
+        </svg>
+      </div>
+      <span class="dock-label">Projects</span>
+    </a>
+
+    <a href="calculator.html" class="dock-item">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="16" height="20" x="4" y="2" rx="3"/>
+          <line x1="8" y1="6" x2="16" y2="6"/>
+          <circle cx="8.5" cy="11" r="0.8" fill="currentColor"/>
+          <circle cx="12" cy="11" r="0.8" fill="currentColor"/>
+          <circle cx="15.5" cy="11" r="0.8" fill="currentColor"/>
+          <circle cx="8.5" cy="15" r="0.8" fill="currentColor"/>
+          <circle cx="12" cy="15" r="0.8" fill="currentColor"/>
+          <circle cx="15.5" cy="15" r="0.8" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="dock-label">EMI Calc</span>
+    </a>
+
+    <a href="contact.html" class="dock-item active">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <span class="dock-label">Contact</span>
+    </a>
+  </nav>
 
   <!-- Scripts -->
   <script src="projects-data.js"></script>

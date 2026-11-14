@@ -39,6 +39,7 @@
       "url": "https://adventura-taupe.vercel.app"
     }
   }
+  </script>
   <script>
     (function(){
       const t = localStorage.getItem('adventura_theme');
@@ -79,10 +80,7 @@
           <i class="ri-sun-line sun-icon"></i>
         </button>
 
-        <a href="contact.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">
-          Inquire Now
-        </a>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Navigation Menu">
           <i class="ri-menu-4-line"></i>
         </button>
       </div>
@@ -106,7 +104,7 @@
         
         <!-- Controls Column -->
         <div class="calc-inputs">
-          <h2 style="font-size: 1.6rem; color: var(--text-main); margin-bottom: 24px;">
+          <h2 class="calc-title">
             <i class="ri-calculator-line" style="color: var(--red-light);"></i> Loan Parameters
           </h2>
 
@@ -117,7 +115,7 @@
               <span class="calc-val-display" id="amountVal">₹15 Lakhs</span>
             </div>
             <input type="range" id="calcAmount" min="3" max="100" step="1" value="15" class="calc-range">
-            <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-dim); margin-top: 6px;">
+            <div class="calc-scale-row">
               <span>₹3 Lakhs</span>
               <span>₹50 Lakhs</span>
               <span>₹1 Crore</span>
@@ -131,7 +129,7 @@
               <span class="calc-val-display" id="tenureVal">10 Years</span>
             </div>
             <input type="range" id="calcTenure" min="1" max="30" step="1" value="10" class="calc-range">
-            <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-dim); margin-top: 6px;">
+            <div class="calc-scale-row">
               <span>1 Year</span>
               <span>15 Years</span>
               <span>30 Years</span>
@@ -145,15 +143,15 @@
               <span class="calc-val-display" id="rateVal">8.5%</span>
             </div>
             <input type="range" id="calcRate" min="6" max="16" step="0.1" value="8.5" class="calc-range">
-            <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-dim); margin-top: 6px;">
-              <span>6% (Govt / Subsidized)</span>
-              <span>10% (Commercial)</span>
+            <div class="calc-scale-row">
+              <span>6% (Govt)</span>
+              <span>10% (Standard)</span>
               <span>16% (NBFC)</span>
             </div>
           </div>
 
           <!-- Highlight Box for Adventura Flexi-EMI -->
-          <div style="background: rgba(240,40,31,0.06); border: 1px solid rgba(240,40,31,0.25); border-radius: var(--radius-md); padding: 18px; margin-top: 10px;">
+          <div class="calc-flexi-box">
             <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
               <i class="ri-checkbox-circle-fill" style="color: var(--emerald-accent);"></i>
               <strong style="color: var(--text-main); font-size: 0.88rem;">Adventura In-House Flexi-Installment</strong>
@@ -201,7 +199,7 @@
           When acquiring property in Bihar, the total acquisition cost involves the basic plot value plus government stamp duty and registration fees. Adventura provides end-to-end guidance to ensure you encounter zero unexpected charges.
         </p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 20px;">
           <div style="padding: 20px; background: var(--bg-card); border: 1px solid var(--border-line); border-radius: var(--radius-md);">
             <h4 style="color: var(--text-main); font-size: 1.05rem; margin-bottom: 8px;"><i class="ri-file-shield-line" style="color: var(--red-light);"></i> Title & Mutation Clarity</h4>
             <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin: 0;">We audit CS/RS Khatiyan, Jamabandi records, and ensure guaranteed Dakhil-Kharij (Mutation) execution.</p>
@@ -222,17 +220,6 @@
     </div>
   </section>
 
-  <!-- Floating Mobile Action Bar -->
-  <div class="floating-action-bar">
-    <a href="tel:+916299130640" class="floating-btn call-btn">
-      <i class="ri-phone-fill"></i>
-      <span>Call: +91 6299130640</span>
-    </a>
-    <a href="https://wa.me/916299130640?text=Hi%20Adventura%20Team%2C%20I%20used%20your%20EMI%20calculator%20and%20want%20to%20know%20more." target="_blank" class="floating-btn whatsapp-btn">
-      <i class="ri-whatsapp-fill"></i>
-      <span>WhatsApp Chat</span>
-    </a>
-  </div>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -282,6 +269,57 @@
       </div>
     </div>
   </footer>
+
+  <!-- ==========================================================================
+       MOBILE FLOATING BOTTOM NAVIGATION DOCK (Exact Reference Design)
+       ========================================================================== -->
+  <nav class="mobile-bottom-dock" aria-label="Mobile Navigation">
+    <a href="index.html" class="dock-item">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9.5L12 3l9 6.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.5z"/>
+          <line x1="10" y1="13" x2="14" y2="13"/>
+        </svg>
+      </div>
+      <span class="dock-label">Home</span>
+    </a>
+
+    <a href="projects.html" class="dock-item">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="14" r="4.5"/>
+          <circle cx="16" cy="8" r="3"/>
+          <circle cx="17" cy="16" r="2.2"/>
+        </svg>
+      </div>
+      <span class="dock-label">Projects</span>
+    </a>
+
+    <a href="calculator.html" class="dock-item active">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="16" height="20" x="4" y="2" rx="3"/>
+          <line x1="8" y1="6" x2="16" y2="6"/>
+          <circle cx="8.5" cy="11" r="0.8" fill="currentColor"/>
+          <circle cx="12" cy="11" r="0.8" fill="currentColor"/>
+          <circle cx="15.5" cy="11" r="0.8" fill="currentColor"/>
+          <circle cx="8.5" cy="15" r="0.8" fill="currentColor"/>
+          <circle cx="12" cy="15" r="0.8" fill="currentColor"/>
+          <circle cx="15.5" cy="15" r="0.8" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="dock-label">EMI Calc</span>
+    </a>
+
+    <a href="contact.html" class="dock-item">
+      <div class="dock-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <span class="dock-label">Contact</span>
+    </a>
+  </nav>
 
   <!-- Scripts -->
   <script src="projects-data.js"></script>

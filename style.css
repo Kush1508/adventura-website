@@ -201,7 +201,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  z-index: 30;
+  z-index: 2;
   width: 260px;
   height: 95px;
   background: linear-gradient(to top left, #08080b, rgba(8,8,11,0.95), transparent);
@@ -602,6 +602,7 @@ h1, h2, h3, h4, .brand-font {
   letter-spacing: 0.03em;
   transition: all var(--transition-normal);
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .btn-primary {
@@ -861,6 +862,36 @@ h1, h2, h3, h4, .brand-font {
   justify-content: center;
 }
 
+.hero-video-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-video-container video,
+#heroBgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.72) contrast(1.05);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(8, 8, 11, 0.42) 0%, rgba(8, 8, 11, 0.8) 75%, rgba(8, 8, 11, 0.96) 100%);
+  pointer-events: none;
+}
+
+[data-theme="light"] .hero-video-overlay {
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, rgba(248, 249, 252, 0.82) 75%, rgba(248, 249, 252, 0.96) 100%);
+}
+
 .spline-container {
   position: absolute;
   inset: 0;
@@ -907,19 +938,25 @@ h1, h2, h3, h4, .brand-font {
   color: var(--text-muted);
   text-transform: uppercase;
 }
-spline-viewer {
+spline-viewer,
+model-viewer {
   width: 100% !important;
   height: 100% !important;
   display: block !important;
   pointer-events: auto !important;
+  background: transparent !important;
+  --poster-color: transparent !important;
+  outline: none !important;
   transform: translateZ(0);
   will-change: transform;
 }
 
-spline-viewer::part(canvas) {
+spline-viewer::part(canvas),
+model-viewer::part(default-canvas) {
   width: 100% !important;
   height: 100% !important;
   display: block !important;
+  visibility: visible !important;
   transform: translateZ(0);
   will-change: transform;
 }
@@ -1295,6 +1332,139 @@ spline-viewer::part(canvas) {
   z-index: 2;
 }
 
+/* Responsive Grid Utilities for Flawless Tablet & Mobile Layouts */
+.responsive-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.founder-leadership-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.form-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.consultation-cta-card {
+  background: radial-gradient(circle at 80% 20%, rgba(240, 40, 31, 0.12) 0%, var(--bg-card) 60%);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-xl);
+  padding: 50px 44px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .consultation-cta-card {
+  background: radial-gradient(circle at 80% 20%, rgba(240, 40, 31, 0.08) 0%, #FFFFFF 65%);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+.consultation-cta-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.consultation-badge {
+  margin-bottom: 16px;
+  display: inline-flex;
+}
+
+.consultation-heading {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  color: var(--text-main);
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+
+.consultation-desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.consultation-cta-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.consultation-cta-actions .btn {
+  height: 48px;
+  padding: 0 24px;
+  text-decoration: none !important;
+}
+
+.consultation-cta-actions .btn:hover,
+.consultation-cta-actions .btn:focus,
+.consultation-cta-actions .btn:visited,
+.consultation-cta-actions .btn:active {
+  text-decoration: none !important;
+}
+
+.consultation-sub-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+[data-theme="light"] .consultation-sub-card {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.consultation-sub-tag {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+
+.consultation-sub-title {
+  font-size: 1.15rem;
+  color: var(--text-main);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.consultation-sub-text {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+.consultation-sub-block.border-top {
+  border-top: 1px solid var(--border-line);
+  padding-top: 20px;
+}
+
+.consultation-sub-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.85rem;
+  text-decoration: none !important;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -1397,7 +1567,7 @@ spline-viewer::part(canvas) {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: 28px;
 }
 
@@ -1636,6 +1806,91 @@ input[type="range"] {
   justify-content: space-between;
   font-size: 0.9rem;
   color: var(--text-muted);
+}
+
+.calc-title {
+  font-size: 1.6rem;
+  color: var(--text-main);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.calc-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.calc-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.calc-label-row label {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.calc-val-display {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--red-light);
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.calc-range {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  height: 6px;
+  accent-color: var(--red-primary);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.calc-scale-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+  width: 100%;
+  gap: 6px;
+}
+
+.calc-flexi-box {
+  background: rgba(240, 40, 31, 0.06);
+  border: 1px solid rgba(240, 40, 31, 0.25);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  margin-top: 10px;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.full-story-btn {
+  padding: 12px 28px;
+  font-size: 0.92rem;
+  max-width: 100%;
+  text-decoration: none !important;
+}
+
+.full-story-btn:hover,
+.full-story-btn:focus,
+.full-story-btn:visited,
+.full-story-btn:active {
+  text-decoration: none !important;
 }
 
 /* ==========================================================================
@@ -2115,8 +2370,14 @@ textarea.form-control {
     flex-wrap: wrap;
   }
 
-  .calc-card, .contact-grid {
-    grid-template-columns: 1fr;
+  .calc-card, .contact-grid, .responsive-two-col, .founder-leadership-grid, .consultation-cta-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  .founder-profile-card {
+    max-width: 440px;
+    margin: 0 auto;
   }
   
   .footer-grid {
@@ -2126,6 +2387,54 @@ textarea.form-control {
   .nav-links {
     display: none;
     border-radius: var(--radius-md) !important;
+  }
+
+  .nav-links.is-open {
+    display: flex !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    top: 72px !important;
+    left: 12px !important;
+    right: 12px !important;
+    background: var(--bg-card) !important;
+    backdrop-filter: blur(28px) !important;
+    -webkit-backdrop-filter: blur(28px) !important;
+    border: 1px solid var(--border-line) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 16px !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7) !important;
+    gap: 8px !important;
+    z-index: 10000 !important;
+    animation: mobileNavFade 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  [data-theme="light"] .nav-links.is-open {
+    background: rgba(255, 255, 255, 0.96) !important;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .nav-links.is-open li {
+    width: 100%;
+  }
+
+  .nav-links.is-open .nav-link {
+    display: block !important;
+    width: 100% !important;
+    padding: 12px 18px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    border-radius: var(--radius-sm) !important;
+  }
+
+  @keyframes mobileNavFade {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .nav-links li:not(:last-child)::after {
@@ -2172,7 +2481,177 @@ textarea.form-control {
   }
 }
 
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 84px !important;
+  }
+
+  /* Only for mobile phone UI: remove the box from the scroll-through walkthrough view */
+  .walkthrough-cards-layer,
+  .glass-walkthrough-card {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+
+  /* Only for mobile phone UI: remove legacy floating button */
+  .floating-action-bar {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Top bar styling to match exact user reference image */
+  .site-header {
+    border-top: 2px solid rgba(240, 40, 31, 0.8) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 2px 10px rgba(240, 40, 31, 0.3) !important;
+  }
+
+  .nav-actions {
+    gap: 8px !important;
+  }
+
+  .theme-toggle-btn {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #FFFFFF !important;
+  }
+
+  .nav-actions .btn-inquire-mobile,
+  .btn-inquire-mobile {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+
+  .mobile-menu-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: var(--red-primary) !important;
+    font-size: 1.3rem !important;
+    padding: 0 !important;
+  }
+
+  [data-theme="light"] .mobile-menu-toggle {
+    background: rgba(0, 0, 0, 0.04) !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Exact Mobile Floating Bottom Capsule Dock (As in Reference UI) */
+  .mobile-bottom-dock {
+    display: flex !important;
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 16px !important;
+    right: 16px !important;
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    height: 64px !important;
+    background: rgba(18, 18, 24, 0.88) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1.5px solid rgba(240, 40, 31, 0.45) !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(240, 40, 31, 0.25) !important;
+    padding: 4px 6px !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    z-index: 99999 !important;
+  }
+
+  [data-theme="light"] .mobile-bottom-dock {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border: 1.5px solid rgba(240, 40, 31, 0.35) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 0 20px rgba(240, 40, 31, 0.15) !important;
+  }
+
+  .dock-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    color: #94A3B8 !important;
+    padding: 6px 14px !important;
+    border-radius: 9999px !important;
+    transition: all 0.25s ease !important;
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+
+  [data-theme="light"] .dock-item {
+    color: #64748B !important;
+  }
+
+  .dock-item .dock-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 24px !important;
+    height: 24px !important;
+    margin-bottom: 2px !important;
+    transition: transform 0.2s ease !important;
+  }
+
+  .dock-item .dock-label {
+    font-size: 0.72rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.02em !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  /* Active Item: Soft glowing red radial capsule (as seen in image) */
+  .dock-item.active {
+    background: radial-gradient(circle at center, rgba(240, 40, 31, 0.5) 0%, rgba(240, 40, 31, 0.2) 100%) !important;
+    color: #FFFFFF !important;
+    box-shadow: inset 0 0 12px rgba(240, 40, 31, 0.45) !important;
+  }
+
+  [data-theme="light"] .dock-item.active {
+    background: radial-gradient(circle at center, rgba(240, 40, 31, 0.25) 0%, rgba(240, 40, 31, 0.08) 100%) !important;
+    color: var(--red-primary) !important;
+    box-shadow: inset 0 0 10px rgba(240, 40, 31, 0.2) !important;
+  }
+
+  .dock-item.active .dock-label {
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+  }
+
+  [data-theme="light"] .dock-item.active .dock-label {
+    color: var(--red-primary) !important;
+  }
+
+  .dock-item.active .dock-icon {
+    transform: translateY(-1px) scale(1.05) !important;
+  }
+}
+
+.mobile-bottom-dock {
+  display: none;
+}
+
 @media (max-width: 600px) {
+  .container {
+    padding: 0 16px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
   .nav-container {
     height: 64px !important;
     padding: 0 12px !important;
@@ -2182,7 +2661,7 @@ textarea.form-control {
     height: 36px !important;
   }
 
-  .nav-actions .btn {
+  .nav-actions .btn:not(.btn-inquire-mobile) {
     padding: 6px 10px !important;
     font-size: 0.72rem !important;
   }
@@ -2234,105 +2713,340 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
 
-  /* 2. Hero Property Highlights: Sleek Horizontal Pill Carousel */
-  .hero-highlights-bar {
+  .form-grid-2col {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .full-story-btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 13px 16px !important;
+    font-size: 0.82rem !important;
+    white-space: normal !important;
+    text-align: center !important;
+    line-height: 1.4 !important;
+    box-sizing: border-box !important;
+    text-decoration: none !important;
+  }
+
+  .consultation-cta-card {
+    padding: 24px 16px !important;
+    border-radius: var(--radius-lg) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .consultation-badge {
+    margin-bottom: 14px !important;
+    font-size: 0.74rem !important;
+    padding: 6px 12px !important;
+    line-height: 1.4 !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+  }
+
+  .consultation-heading {
+    font-size: 1.55rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .consultation-desc {
+    font-size: 0.92rem !important;
+    line-height: 1.7 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .consultation-cta-actions {
     display: flex !important;
-    overflow-x: auto !important;
-    scroll-snap-type: x mandatory !important;
-    -webkit-overflow-scrolling: touch !important;
-    scrollbar-width: none !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .consultation-cta-actions .btn {
+    width: 100% !important;
+    min-height: 48px !important;
+    height: auto !important;
+    padding: 13px 16px !important;
+    font-size: 0.86rem !important;
+    white-space: normal !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    text-decoration: none !important;
+    border-radius: var(--radius-sm) !important;
+  }
+
+  .consultation-sub-card {
+    padding: 20px 16px !important;
+    gap: 18px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .consultation-sub-tag {
+    margin-bottom: 8px !important;
+    font-size: 0.72rem !important;
+  }
+
+  .consultation-sub-title {
+    font-size: 1.08rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .consultation-sub-text {
+    font-size: 0.86rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .consultation-sub-block.border-top {
+    padding-top: 18px !important;
+  }
+
+  /* Calculator Mobile Polish (No Overflow, Strict Box Bounds) */
+  .calc-card {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 20px 14px !important;
+    gap: 20px !important;
+    border-radius: var(--radius-md) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .calc-inputs {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .calc-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 16px !important;
+    line-height: 1.3 !important;
+  }
+
+  .calc-group {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .calc-label-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
     gap: 8px !important;
-    padding: 8px 10px !important;
-    border-radius: 999px !important;
-    background: rgba(18, 18, 26, 0.75) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    margin-bottom: 6px !important;
+    box-sizing: border-box !important;
+  }
+
+  .calc-label-row label {
+    font-size: 0.8rem !important;
+    color: var(--text-muted) !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    line-height: 1.3 !important;
+  }
+
+  .calc-val-display {
+    font-family: var(--font-heading) !important;
+    font-size: 0.84rem !important;
+    font-weight: 700 !important;
+    color: var(--red-light) !important;
+    background: rgba(240, 40, 31, 0.1) !important;
+    border: 1px solid rgba(240, 40, 31, 0.25) !important;
+    padding: 2px 7px !important;
+    border-radius: 6px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    text-align: right !important;
+  }
+
+  input[type="range"].calc-range,
+  .calc-range {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 6px 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .calc-scale-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    font-size: 0.66rem !important;
+    color: var(--text-dim) !important;
+    gap: 4px !important;
+    margin-top: 4px !important;
+    width: 100% !important;
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
-  [data-theme="light"] .hero-highlights-bar {
-    background: rgba(255, 255, 255, 0.88) !important;
-    border-color: rgba(0, 0, 0, 0.08) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+
+  .calc-scale-row span {
+    white-space: nowrap !important;
   }
-  .hero-highlights-bar::-webkit-scrollbar {
+
+  .calc-flexi-box {
+    padding: 14px 12px !important;
+    margin-top: 6px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .calc-flexi-box strong {
+    font-size: 0.82rem !important;
+  }
+
+  .calc-flexi-box p {
+    font-size: 0.78rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .calc-results {
+    padding: 22px 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .emi-display {
+    font-size: 2.2rem !important;
+  }
+
+  .founder-profile-card > div:first-child {
+    height: 320px !important;
+  }
+
+  .spline-watermark-blocker {
     display: none !important;
   }
+
+  /* 2. Hero Property Highlights: Compact Responsive Grid (No Overflow / Zero Clipping) */
+  .hero-highlights-bar {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-top: 20px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
   .highlight-item {
-    flex: 0 0 auto !important;
-    scroll-snap-align: start !important;
     display: flex !important;
     align-items: center !important;
     gap: 8px !important;
-    padding: 6px 14px !important;
-    background: rgba(255, 255, 255, 0.06) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 999px !important;
+    padding: 8px 10px !important;
+    background: rgba(18, 18, 24, 0.85) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important;
+    width: 100% !important;
   }
+
   [data-theme="light"] .highlight-item {
-    background: rgba(0, 0, 0, 0.04) !important;
-    border-color: rgba(0, 0, 0, 0.06) !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
   }
+
   .highlight-item .highlight-icon {
     width: 28px !important;
     height: 28px !important;
-    font-size: 0.95rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 50% !important;
+    background: rgba(240, 40, 31, 0.15) !important;
+    border: 1px solid rgba(240, 40, 31, 0.3) !important;
+    color: var(--red-light) !important;
     margin-bottom: 0 !important;
-  }
-  .highlight-item span {
-    font-size: 0.68rem !important;
-    display: block !important;
-    line-height: 1.1 !important;
-  }
-  .highlight-item strong {
-    font-size: 0.8rem !important;
-    display: block !important;
-    line-height: 1.1 !important;
-  }
-  .hero-highlights-bar > div:last-child {
-    flex: 0 0 auto !important;
-  }
-  .hero-highlights-bar > div:last-child .btn {
-    height: 38px !important;
-    padding: 0 16px !important;
-    font-size: 0.78rem !important;
-    white-space: nowrap !important;
-    border-radius: 999px !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
   }
 
-  /* 3. Floating Quick-Action Bar: Refined Luxury Frosted Capsule (No Jittery Bouncing) */
-  .floating-action-bar {
-    left: 16px !important;
-    right: 16px !important;
-    bottom: 16px !important;
-    justify-content: center !important;
-    gap: 10px !important;
-    padding: 6px 10px !important;
-    background: rgba(15, 17, 23, 0.88) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 999px !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
-    animation: none !important;
-    z-index: 999 !important;
+  .highlight-item > div:last-child {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
   }
-  [data-theme="light"] .floating-action-bar {
-    background: rgba(255, 255, 255, 0.92) !important;
-    border-color: rgba(0, 0, 0, 0.1) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+
+  .highlight-item span {
+    font-size: 0.62rem !important;
+    color: var(--text-dim) !important;
+    display: block !important;
+    line-height: 1.2 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.03em !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
-  .floating-btn {
-    padding: 8px 16px !important;
+
+  .highlight-item strong {
     font-size: 0.76rem !important;
+    color: #FFFFFF !important;
+    display: block !important;
+    line-height: 1.25 !important;
     font-weight: 600 !important;
-    border-radius: 999px !important;
-    box-shadow: none !important;
+    white-space: normal !important;
+    word-break: break-word !important;
   }
-  .floating-btn span {
-    display: inline;
-    font-size: 0.72rem;
+
+  [data-theme="light"] .highlight-item strong {
+    color: #090A0F !important;
+  }
+
+  .hero-highlights-bar > div:last-child {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    margin-top: 4px !important;
+  }
+
+  .hero-highlights-bar > div:last-child .btn {
+    width: 100% !important;
+    height: 44px !important;
+    padding: 0 16px !important;
+    font-size: 0.84rem !important;
+    border-radius: var(--radius-sm) !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 18px rgba(240, 40, 31, 0.45) !important;
+  }
+
+  /* 3. Floating Quick-Action Bar: Removed on mobile screens */
+  .floating-action-bar {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
   }
 
   /* 4. Section Padding & Ergonomics */
@@ -2345,54 +3059,77 @@ textarea.form-control {
     max-width: 100vw !important;
   }
 
+  /* Pure cinematic video scroll-through on mobile phone screens (unobstructed full view) */
+  .walkthrough-cards-layer,
   .glass-walkthrough-card {
-    left: 14px !important;
-    right: 14px !important;
-    top: auto !important;
-    bottom: 84px !important;
-    width: auto !important;
-    max-width: none !important;
-    transform: translateY(20px) !important;
-    padding: 16px 18px !important;
-    border-radius: 24px !important;
-  }
-
-  .glass-walkthrough-card.active {
-    transform: translateY(0) !important;
-  }
-
-  .glass-walkthrough-card h3 {
-    font-size: 1.28rem !important;
-    margin-bottom: 8px !important;
-    line-height: 1.3 !important;
-  }
-
-  .glass-walkthrough-card p {
-    font-size: 0.88rem !important;
-    line-height: 1.5 !important;
-    margin-bottom: 4px !important;
-  }
-
-  .glass-walkthrough-card .card-stage-badge {
-    font-size: 0.72rem !important;
-    padding: 6px 14px !important;
-    margin-bottom: 10px !important;
-  }
-
-  .glass-walkthrough-card .card-footer-tags {
-    margin-top: 14px !important;
-    padding-top: 12px !important;
-    gap: 8px !important;
-  }
-
-  .glass-walkthrough-card .card-footer-tags span {
-    font-size: 0.76rem !important;
-    padding: 5px 10px !important;
-    border-radius: 8px !important;
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
   }
 
   .scroll-guide-box {
     display: none !important;
+  }
+
+  /* Universal Button Polish (No Link Underlines, Responsive Ergonomics) */
+  .btn, a.btn, button.btn, .btn-primary, .btn-secondary, .filter-btn, .full-story-btn, .consultation-btn-phone, .consultation-btn-visit, .consultation-sub-btn {
+    text-decoration: none !important;
+  }
+
+  .btn:hover, .btn:focus, .btn:active, .btn:visited,
+  a.btn:hover, a.btn:focus, a.btn:active, a.btn:visited {
+    text-decoration: none !important;
+  }
+
+  /* Prevent Headings & Text Compression */
+  h1, h2, h3, h4, h5, h6 {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .page-hero-title {
+    font-size: clamp(1.8rem, 6vw, 2.3rem) !important;
+    line-height: 1.3 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .page-hero-subtitle {
+    font-size: 0.94rem !important;
+    line-height: 1.7 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .section-title-wrap h2 {
+    font-size: 1.85rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .section-title-wrap p {
+    font-size: 0.94rem !important;
+    line-height: 1.65 !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* Testimonials Header on Mobile */
+  #testimonials h2 {
+    font-size: 1.75rem !important;
+    line-height: 1.32 !important;
+    margin-bottom: 12px !important;
+  }
+
+  #testimonials p {
+    font-size: 0.94rem !important;
+    line-height: 1.65 !important;
+    margin-bottom: 16px !important;
+  }
+
+  #testimonials .btn {
+    width: 100% !important;
+    white-space: normal !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
   }
 }
 

@@ -55,6 +55,7 @@
       initEventListeners();
       initScrollEffects();
       initWalkthroughScroll();
+      initHeroVideo();
       initFastSplineMouseTracking();
       initThemeToggle();
       checkSecretAdminRoute();
@@ -155,57 +156,92 @@
   }
 
   function initFastSplineMouseTracking() {
-    // Smooth 3D scene loader dismissal
-    const viewer = document.querySelector('spline-viewer');
-    if (viewer) {
-      const hideLoader = () => {
-        const loader = document.getElementById('splineLoader');
-        if (loader && loader.style.display !== 'none') {
-          loader.style.opacity = '0';
-          setTimeout(() => { if (loader) loader.style.display = 'none'; }, 400);
-        }
-      };
-      viewer.addEventListener('load', hideLoader);
-      setTimeout(hideLoader, 3000);
-    }
+    const modelViewer = document.getElementById('heroModelViewer') || document.querySelector('model-viewer');
+    const splineViewer = document.querySelector('spline-viewer');
+    const loader = document.getElementById('splineLoader');
 
-    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    if (isTouch) return; // Touch devices use native gesture scrolling
-
-    let rafId = null;
-    let lastEvent = null;
-
-    const updateSplineCursor = () => {
-      if (!lastEvent) return;
-      const v = document.querySelector('spline-viewer');
-      if (v) {
-        const canvas = v.shadowRoot ? v.shadowRoot.querySelector('canvas') : null;
-        const targetElement = canvas || v;
-        try {
-          const evt = new PointerEvent('pointermove', {
-            clientX: lastEvent.clientX,
-            clientY: lastEvent.clientY,
-            movementX: lastEvent.movementX,
-            movementY: lastEvent.movementY,
-            bubbles: true,
-            cancelable: true,
-            pointerType: 'mouse',
-            isPrimary: true
-          });
-          targetElement.dispatchEvent(evt);
-        } catch (e) {
-          // ignore fallback
-        }
+    const hideLoader = () => {
+      if (loader && loader.style.display !== 'none') {
+        loader.style.opacity = '0';
+        setTimeout(() => { if (loader) loader.style.display = 'none'; }, 400);
       }
-      rafId = null;
     };
 
-    window.addEventListener('mousemove', (e) => {
-      lastEvent = e;
-      if (!rafId) {
-        rafId = requestAnimationFrame(updateSplineCursor);
+    if (modelViewer) {
+      modelViewer.addEventListener('load', hideLoader);
+      modelViewer.addEventListener('error', () => {
+        // Fallback to alternate public path if primary fails
+        if (!modelViewer.src.includes('public/interior.glb.glb')) {
+          modelViewer.src = 'public/interior.glb.glb';
+        }
+      });
+      // Safety timer to guarantee loader never hangs
+      setTimeout(hideLoader, 2500);
+
+      const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      if (!isTouch) {
+        let rafId = null;
+        let lastEvent = null;
+
+        const updateCameraParallax = () => {
+          if (!lastEvent || !modelViewer) return;
+          const xRatio = (lastEvent.clientX / window.innerWidth) - 0.5;
+          const yRatio = (lastEvent.clientY / window.innerHeight) - 0.5;
+          const baseTheta = 45;
+          const theta = baseTheta + (xRatio * 16);
+          const phi = 75 + (yRatio * 8);
+          try {
+            if (modelViewer.cameraOrbit) {
+              modelViewer.cameraOrbit = `${theta.toFixed(1)}deg ${phi.toFixed(1)}deg 105%`;
+            }
+          } catch (e) {}
+          rafId = null;
+        };
+
+        window.addEventListener('mousemove', (e) => {
+          lastEvent = e;
+          if (!rafId) {
+            rafId = requestAnimationFrame(updateCameraParallax);
+          }
+        }, { passive: true });
       }
-    }, { passive: true });
+    } else if (splineViewer) {
+      splineViewer.addEventListener('load', hideLoader);
+      setTimeout(hideLoader, 3000);
+    } else {
+      setTimeout(hideLoader, 1000);
+    }
+  }
+
+  function initHeroVideo() {
+    const video = document.getElementById('heroBgVideo');
+    if (!video) return;
+
+    video.muted = true;
+    video.playsInline = true;
+
+    const attemptPlay = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          const unlock = () => {
+            video.play().catch(() => {});
+            document.removeEventListener('click', unlock);
+            document.removeEventListener('touchstart', unlock);
+            document.removeEventListener('scroll', unlock);
+          };
+          document.addEventListener('click', unlock, { once: true, passive: true });
+          document.addEventListener('touchstart', unlock, { once: true, passive: true });
+          document.addEventListener('scroll', unlock, { once: true, passive: true });
+        });
+      }
+    };
+
+    if (document.readyState === 'complete') {
+      attemptPlay();
+    } else {
+      window.addEventListener('load', attemptPlay, { once: true });
+    }
   }
 
   window.addEventListener('hashchange', checkSecretAdminRoute);
@@ -746,6 +782,13 @@
 
         return matchFilter && matchSearch;
       });
+
+      if (container.dataset.limit) {
+        const limitNum = parseInt(container.dataset.limit, 10);
+        if (!isNaN(limitNum) && limitNum > 0) {
+          filtered = filtered.slice(0, limitNum);
+        }
+      }
 
       if (filtered.length === 0) {
         container.innerHTML = `
@@ -1837,19 +1880,21 @@
     const mobileBtn = document.getElementById('mobileMenuToggle');
     const navLinks = document.getElementById('navLinks');
     if (mobileBtn && navLinks) {
-      mobileBtn.addEventListener('click', () => {
-        const isFlex = window.getComputedStyle(navLinks).display === 'flex';
-        navLinks.style.display = isFlex ? 'none' : 'flex';
-        if (!isFlex) {
-          navLinks.style.flexDirection = 'column';
-          navLinks.style.position = 'absolute';
-          navLinks.style.top = '84px';
-          navLinks.style.left = '0';
-          navLinks.style.right = '0';
-          navLinks.style.background = 'rgba(8, 8, 11, 0.96)';
-          navLinks.style.padding = '20px';
-          navLinks.style.borderBottom = '1px solid var(--border-line)';
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navLinks.classList.toggle('is-open');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+          navLinks.classList.remove('is-open');
         }
+      });
+
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('is-open');
+        });
       });
     }
 
