@@ -53,8 +53,9 @@
     })();
   </script>
 
-  <!-- Preload Cinematic Hero Video & Key Walkthrough Frame -->
-  <link rel="preload" href="public/videos/VN20261114_165304.mp4" as="video" type="video/mp4">
+  <!-- Preload Optimized Cinematic Hero Video (Responsive) -->
+  <link rel="preload" href="public/videos/hero_mobile.mp4" as="video" type="video/mp4" media="(max-width: 768px)">
+  <link rel="preload" href="public/videos/hero_desktop.mp4" as="video" type="video/mp4" media="(min-width: 769px)">
   <link rel="preload" as="image" href="frames/frames_real_estate_walkthrough.mp4_60fps_webp/frame_000000.webp" fetchpriority="high">
   <link rel="preload" as="image" href="ink.png">
 
@@ -138,14 +139,15 @@
        ========================================================================== -->
   <section class="hero-section" id="home">
     
-    <!-- Cinematic Hero Video Background Layer -->
+    <!-- Cinematic Hero Video Background Layer (Hardware Accelerated & Responsive) -->
     <div class="hero-video-container" style="position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;">
-      <video id="heroBgVideo" autoplay loop muted playsinline preload="auto" style="width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.72) contrast(1.05);">
+      <video id="heroBgVideo" autoplay loop muted playsinline preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block;">
+        <source src="public/videos/hero_mobile.mp4" media="(max-width: 768px)" type="video/mp4">
+        <source src="public/videos/hero_desktop.mp4" type="video/mp4">
         <source src="public/videos/VN20261114_165304.mp4" type="video/mp4">
-        <source src="/public/videos/VN20261114_165304.mp4" type="video/mp4">
       </video>
       <!-- Dark Radial Vignette & Gradient Overlay for Sharp Foreground Text Legibility -->
-      <div class="hero-video-overlay" style="position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(8, 8, 11, 0.42) 0%, rgba(8, 8, 11, 0.8) 75%, rgba(8, 8, 11, 0.96) 100%); pointer-events: none;"></div>
+      <div class="hero-video-overlay" style="position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(8, 8, 11, 0.45) 0%, rgba(8, 8, 11, 0.82) 75%, rgba(8, 8, 11, 0.96) 100%); pointer-events: none;"></div>
     </div>
 
     <!-- Bottom Gradient Mask for Seamless Hero Transition -->

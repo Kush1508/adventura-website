@@ -220,6 +220,16 @@
     video.muted = true;
     video.playsInline = true;
 
+    // Detect mobile viewport and assign optimized source if not auto-picked
+    const isMobile = window.innerWidth <= 768;
+    const targetPath = isMobile ? 'public/videos/hero_mobile.mp4' : 'public/videos/hero_desktop.mp4';
+    if (!video.currentSrc || (!video.currentSrc.includes('hero_mobile') && !video.currentSrc.includes('hero_desktop'))) {
+      const preferredSource = video.querySelector(`source[src*="${isMobile ? 'hero_mobile' : 'hero_desktop'}"]`);
+      if (preferredSource && preferredSource.src) {
+        video.src = preferredSource.src;
+      }
+    }
+
     const attemptPlay = () => {
       const playPromise = video.play();
       if (playPromise !== undefined) {
